@@ -1,0 +1,19 @@
+{
+  "name": "playwright_test_final_project",
+  "version": "1.0.0",
+  "description": "[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/node": "^20.12.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "faker": "^6.6.6",
+    "uuid": "^9.0.1"
+  }
+}
