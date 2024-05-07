@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { URL } from 'url';
+require('dotenv').config();
 
 test.describe('Suits', () => {
   test('has title', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
   });
 });
