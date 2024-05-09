@@ -1,6 +1,14 @@
 import { defineConfig, devices } from '@playwright/test';
+import { expect } from '@playwright/test';
+import playwrightApiMatchers from 'odottaa';
 
-require('dotenv').config();
+
+expect.extend(playwrightApiMatchers);
+
+require('dotenv').config()
+
+
+
 export default defineConfig(
   {
     timeout: 10000,
