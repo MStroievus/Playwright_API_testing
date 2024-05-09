@@ -1,3 +1,4 @@
 export enum APIRoutes {
-  LOGIN = "users/login"
+  Login = "users/login",
+  Contact = "contacts"
 }

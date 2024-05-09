@@ -8,7 +8,13 @@ export class AuthAPIClient implements APIClient {
   }
 
   async getAuthTokenApi(data: Login): Promise<APIResponse> {
-    return await this.context.post(APIRoutes.LOGIN, { data });
+    return await this.context.post(APIRoutes.Login, { data });
+  }
+
+  async getAuthToken(data: Login): Promise<APIResponse> {
+    const response = await this.getAuthTokenApi(data)
+    const json = await response.json();
+    return json.token;
   }
 
 }

@@ -4,12 +4,12 @@ import playwrightApiMatchers from 'odottaa';
 
 
 expect.extend(playwrightApiMatchers);
-
 require('dotenv').config()
 
 
 
 export default defineConfig(
+
   {
     timeout: 10000,
     testDir: './tests',
