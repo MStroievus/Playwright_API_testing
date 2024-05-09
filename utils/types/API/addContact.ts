@@ -1,4 +1,4 @@
-interface AddContact {
+export interface AddContact {
 
   firstName: string,
   lastName: string,
