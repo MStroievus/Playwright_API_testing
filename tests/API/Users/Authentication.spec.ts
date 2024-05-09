@@ -1,6 +1,6 @@
 
 import { test, expect } from "@playwright/test"
-import { AuthAPIClient } from "../../../core/api/AuthAPIClient"
+import { AuthAPIClient } from "../../../app/api/AuthAPIClient"
 
 
 test('Log in User', async ({ request }) => {

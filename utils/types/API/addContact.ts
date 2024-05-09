@@ -1,7 +1,7 @@
 export interface AddContact {
   firstName: string,
   lastName: string,
-  birthdate: Date,
+  birthdate: string,
   email: string,
   phone: number,
   street1: string,
