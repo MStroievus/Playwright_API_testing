@@ -1,25 +1,29 @@
 import { APIRequestContext, request } from '@playwright/test';
-import { APIAuth } from '../utils/types/api/authentication';
-import AuthAPIClient from './AuthAPIClient';
+import { AuthUser } from '../../utils/types/api/Endpoints/LogInUser';
+import { APIContextFactory } from './contextFactory';
+import { APIContext } from '../../utils/types/api/clients/APIContext';
 
-class AuthAPIContext {
-  static async create({ user, authToken }: APIAuth, authClient: AuthAPIClient): Promise<APIRequestContext> {
+export class AuthenticatedAPIContext implements APIContext {
+  constructor(private user?: AuthUser, private authToken?: string) { }
+
+  async createContext(): Promise<APIRequestContext> {
     let extraHTTPHeaders: { [key: string]: string } = {
       accept: '*/*',
       'Content-Type': 'application/json'
     };
 
-    if (!user && !authToken) {
+    if (!this.user && !this.authToken) {
       throw Error('Provide "user" or "authToken"');
     }
 
-    if (user && !authToken) {
-      const token = await authClient.getAuthToken(user);
-      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Token ${token}` };
+    if (this.user && !this.authToken) {
+      const authClient = await APIContextFactory.createAuthClient();
+      const token = await authClient.getAPIToken(this.user);
+      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${token}` };
     }
 
-    if (authToken && !user) {
-      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Token ${authToken}` };
+    if (this.authToken && !this.user) {
+      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${this.authToken}` };
     }
 
     return await request.newContext({
@@ -28,5 +32,3 @@ class AuthAPIContext {
     });
   }
 }
-
-export default AuthAPIContext;
