@@ -6,7 +6,7 @@ import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
   async addContact(data: AddContact): Promise<APIResponse> {
-    return await this.context.post(APIRoutes.Contact, { data }) as APIResponse
+    return await this.context.post(APIRoutes.Contact, { data })
   }
 
   async getContactList() {
@@ -24,9 +24,7 @@ export class ContactAPIClient extends BaseAPIClient {
     return await this.context.delete(`${APIRoutes.Contact}/${id}`);
   }
 
-  async getIDContact(data: AddContact): Promise<string> {
-    const response = await this.context.post(APIRoutes.Contact, { data });
-    expect(response.status()).toBe(201);
+  async getIDFromContact(response: APIResponse): Promise<string> {
     const json = await response.json();
     return json._id
   }

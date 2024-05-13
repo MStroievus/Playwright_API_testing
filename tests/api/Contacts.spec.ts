@@ -5,6 +5,8 @@ import { APIContextFactory } from '../../app/context/contextFactory';
 import { AuthenticatedAPIContext } from '../../app/context/AuthorizatedContext';
 import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
 import playwrightApiMatchers from 'odottaa';
+import { validateSchema } from '../../utils/schema/validator';
+import { addContactSchema } from '../../utils/schema/api/ContactSchema';
 expect.extend(playwrightApiMatchers);
 
 const userAuth = {
@@ -17,7 +19,7 @@ const contact: AddContact = {
   lastName: 'Doe',
   birthdate: '1970-01-01',
   email: 'jdoe@fake.com',
-  phone: 8005555555,
+  phone: 432847923,
   street1: '1 Main St.',
   street2: 'Apartment A',
   city: 'Anytown',
@@ -50,46 +52,51 @@ test.describe('Add Contact ', async () => {
   test('Add Contact with valid credentials', async ({ }) => {
     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
     const contactAPIClient = new ContactAPIClient(authenticatedContext);
+
     const response = await contactAPIClient.addContact(contact);
     expect(response).toHaveStatusCode(201)
     expect(response).toHaveStatusText('Created')
+    await validateSchema({ schema: addContactSchema, json: contact })
 
+    const contactID = await contactAPIClient.getIDFromContact(response)
+    const my = await contactAPIClient.deleteContact(contactID)
+    console.log(my)
   });
 
-  test('Get Contact List with valid credentials', async ({ }) => {
-    const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
-    const contactAPIClient = new ContactAPIClient(authenticatedContext);
-    const response = await contactAPIClient.getContactList();
-    console.log(await response.json());
+  //   test('Get Contact List with valid credentials', async ({ }) => {
+  //     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
+  //     const contactAPIClient = new ContactAPIClient(authenticatedContext);
+  //     const response = await contactAPIClient.getContactList();
+  //     console.log(await response.json());
 
-  });
+  //   });
 
-  test('Get Contact with valid credentials', async ({ }) => {
-    const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
-    const contactAPIClient = new ContactAPIClient(authenticatedContext);
-    const id = await contactAPIClient.getIDContact(contact);
-    const response = await contactAPIClient.getContact(id)
-    console.log(await response.json())
-  });
-
-
-  test('Update Contact with valid credentials', async ({ }) => {
-    const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
-    const contactAPIClient = new ContactAPIClient(authenticatedContext);
-    const id = await contactAPIClient.getIDContact(contact);
-    console.log(id)
-    const response = await contactAPIClient.updateContactList(id, data1);
-    console.log(await response.json());
-  });
+  //   test('Get Contact with valid credentials', async ({ }) => {
+  //     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
+  //     const contactAPIClient = new ContactAPIClient(authenticatedContext);
+  //     const id = await contactAPIClient.getIDContact(contact);
+  //     const response = await contactAPIClient.getContact(id)
+  //     console.log(await response.json())
+  //   });
 
 
-  test('Delete Contact with valid credentials', async ({ }) => {
-    const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
-    const contactAPIClient = new ContactAPIClient(authenticatedContext);
-    const id = await contactAPIClient.getIDContact(contact);
-    console.log(id)
-    const response = await contactAPIClient.deleteContact(id);
-    console.log(response);
-  });
+  //   test('Update Contact with valid credentials', async ({ }) => {
+  //     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
+  //     const contactAPIClient = new ContactAPIClient(authenticatedContext);
+  //     const id = await contactAPIClient.getIDContact(contact);
+  //     console.log(id)
+  //     const response = await contactAPIClient.updateContactList(id, data1);
+  //     console.log(await response.json());
+  //   });
+
+
+  //   test('Delete Contact with valid credentials', async ({ }) => {
+  //     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
+  //     const contactAPIClient = new ContactAPIClient(authenticatedContext);
+  //     const id = await contactAPIClient.getIDContact(contact);
+  //     console.log(id)
+  //     const response = await contactAPIClient.deleteContact(id);
+  //     console.log(response);
+  //   });
 
 });

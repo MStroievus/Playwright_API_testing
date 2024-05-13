@@ -1,16 +1,25 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { APIClient } from '../../utils/types/api/clients/APIClient';
+import { error } from 'console';
 
-//?Ми створюємо базовий клас BaseAPIClient, який реалізує спільну логіку для всіх API клієнтів, наприклад, обробку помилок, логування тощо. Тоді інші API клієнти можуть успадковуватися від цього базового класу
 
-export abstract class BaseAPIClient implements APIClient {
-  constructor(public readonly context: APIRequestContext) { }
+export class BaseAPIClient implements APIClient {
+  constructor(public context: APIRequestContext) {
+  }
 
-  protected async makeRequest(request: Promise<APIResponse>): Promise<APIResponse> {
-    const response = await request;
-    if (!response.ok()) {
-      throw new Error(`API request failed with status ${response.status()}: ${response.statusText()}`);
+
+  protected handleErrors(error: Error): void {
+    const errorJSON = { error: error.message };
+    console.error(JSON.stringify(errorJSON));
+  }
+
+
+  public async error() {
+    try {
+      // Ваш код тут, наприклад, виклик API
+    } catch (error) {
+      this.handleErrors(error);
+      throw error;
     }
-    return response;
   }
 }

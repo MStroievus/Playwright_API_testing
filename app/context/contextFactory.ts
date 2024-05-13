@@ -15,11 +15,5 @@ export class APIContextFactory {
     const defaultContext = await this.createContext(new DefaultAPIContext());
     return new AuthAPIClient(defaultContext);
 
-    // Для прикладу
-    // static async createAnotherClient(): Promise<AnotherClient> {
-    //   const context = await this.createContext(new DefaultAPIContext());
-    //   return new AnotherClient(context);
-    // }
-    //!У цьому прикладі клас APIContextFactory надає можливість створювати різні типи об'єктів (AuthAPIClient та AnotherClient), не розкриваючи логіку створення "зовнішньому світу". Це полегшує зміну логіки створення, не впливаючи на код, який використовує об'єкти. 
   }
 }
