@@ -10,7 +10,7 @@ export class AuthAPIClient extends BaseAPIClient {
   }
 
   async getAPIToken(data: AuthUser) {
-    const response = await this.context.post(APIRoutes.Login, { data });
+    const response = await this.context.post(APIRoutes.Login, { data }); // Сервер в тестовому проекті не встигає обробляти токени в паралелі
     const json = await response.json();
     expect(response.status()).toBe(200);
     return json.token;

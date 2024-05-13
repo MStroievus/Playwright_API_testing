@@ -1,9 +1,11 @@
-import test from '@playwright/test';
+import test, { expect } from '@playwright/test';
 import { ContactAPIClient } from '../../app/api/ContacAPIClient';
 import { AddContact } from '../../utils/types/api/Endpoints/AddContact';
 import { APIContextFactory } from '../../app/context/contextFactory';
 import { AuthenticatedAPIContext } from '../../app/context/AuthorizatedContext';
 import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
+import playwrightApiMatchers from 'odottaa';
+expect.extend(playwrightApiMatchers);
 
 const userAuth = {
   email: 'tomato_gn1@i.ua',
@@ -49,7 +51,8 @@ test.describe('Add Contact ', async () => {
     const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
     const contactAPIClient = new ContactAPIClient(authenticatedContext);
     const response = await contactAPIClient.addContact(contact);
-    console.log(await response.json());
+    expect(response).toHaveStatusCode(201)
+    expect(response).toHaveStatusText('Created')
 
   });
 

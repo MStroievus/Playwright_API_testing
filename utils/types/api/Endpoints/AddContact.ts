@@ -1,3 +1,5 @@
+import { APIResponse } from "@playwright/test"
+
 export interface AddContact {
 
   firstName: string,
@@ -11,5 +13,9 @@ export interface AddContact {
   stateProvince: string
   postalCode: number,
   country: string
+}
 
+
+export interface AddContactWithID extends AddContact {
+  id?: string
 }

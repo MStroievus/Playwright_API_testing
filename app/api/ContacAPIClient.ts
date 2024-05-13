@@ -1,12 +1,12 @@
 import { APIResponse, expect } from '@playwright/test';
 import { APIRoutes } from '../../utils/constants/Routes';
-import { AddContact } from '../../utils/types/api/Endpoints/AddContact';
+import { AddContact, AddContactWithID } from '../../utils/types/api/Endpoints/AddContact';
 import { BaseAPIClient } from './BaseAPIClient';
 import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
   async addContact(data: AddContact): Promise<APIResponse> {
-    return await this.context.post(APIRoutes.Contact, { data });
+    return await this.context.post(APIRoutes.Contact, { data }) as APIResponse
   }
 
   async getContactList() {
@@ -28,7 +28,8 @@ export class ContactAPIClient extends BaseAPIClient {
     const response = await this.context.post(APIRoutes.Contact, { data });
     expect(response.status()).toBe(201);
     const json = await response.json();
-    return await json._id;
-
+    return json._id
   }
 }
+
+
