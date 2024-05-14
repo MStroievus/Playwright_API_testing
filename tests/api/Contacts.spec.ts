@@ -1,15 +1,16 @@
 import test, { expect } from '@playwright/test';
 import { ContactAPIClient } from '../../app/api/ContacAPIClient';
 import { AddContact } from '../../utils/types/api/Endpoints/AddContact';
-import { APIContextFactory } from '../../app/context/contextFactory';
-import { AuthenticatedAPIContext } from '../../app/context/AuthorizatedContext';
+import { APIContextFactory } from '../../app/context/ContextFactory';
 import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
 import playwrightApiMatchers from 'odottaa';
 import { validateSchema } from '../../utils/schema/validator';
 import { addContactSchema } from '../../utils/schema/api/ContactSchema';
+import { ApiContext } from '../../utils/constants/Contexts';
+import { AuthUser } from '../../utils/types/api/Endpoints/LogInUser';
 expect.extend(playwrightApiMatchers);
 
-const userAuth = {
+const userAuth: AuthUser = {
   email: 'tomato_gn1@i.ua',
   password: 'CreataMaX'
 };
@@ -43,14 +44,14 @@ const data1: UpdateContact = {
 };
 
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhNTIzMjk5ZWY4YTAwMTNlZGY4ZjUiLCJpYXQiOjE3MTU1MDI3MDV9.vzjSgxQhnAu9zEKR0eiKy6MyEeY8X4A-P2g85wVw-JM';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhNTIzMjk5ZWY4YTAwMTNlZGY4ZjUiLCJpYXQiOjE3MTU2NzA3NzV9.RAYOke5F7CtLEauibXzbBEW_VrnTV54AfJz8W6smsHU';
 
 
 
 test.describe('Add Contact ', async () => {
 
   test('Add Contact with valid credentials', async ({ }) => {
-    const authenticatedContext = await APIContextFactory.createContext(new AuthenticatedAPIContext(userAuth));
+    const authenticatedContext = await APIContextFactory.contextFactory(ApiContext.AuthContext, { user: userAuth });
     const contactAPIClient = new ContactAPIClient(authenticatedContext);
 
     const response = await contactAPIClient.addContact(contact);
@@ -58,7 +59,7 @@ test.describe('Add Contact ', async () => {
     expect(response).toHaveStatusText('Created')
     await validateSchema({ schema: addContactSchema, json: contact })
 
-    const contactID = await contactAPIClient.getIDFromContact(response)
+    const contactID = await contactAPIClient.getIDFromResponse(response)
     const my = await contactAPIClient.deleteContact(contactID)
     console.log(my)
   });

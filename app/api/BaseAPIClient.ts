@@ -7,19 +7,8 @@ export class BaseAPIClient implements APIClient {
   constructor(public context: APIRequestContext) {
   }
 
-
-  protected handleErrors(error: Error): void {
-    const errorJSON = { error: error.message };
-    console.error(JSON.stringify(errorJSON));
-  }
-
-
-  public async error() {
-    try {
-      // Ваш код тут, наприклад, виклик API
-    } catch (error) {
-      this.handleErrors(error);
-      throw error;
-    }
+  async getIDFromResponse(response: APIResponse): Promise<string> {
+    const json = await response.json();
+    return json._id
   }
 }

@@ -23,11 +23,6 @@ export class ContactAPIClient extends BaseAPIClient {
   async deleteContact(id: string) {
     return await this.context.delete(`${APIRoutes.Contact}/${id}`);
   }
-
-  async getIDFromContact(response: APIResponse): Promise<string> {
-    const json = await response.json();
-    return json._id
-  }
 }
 
 
