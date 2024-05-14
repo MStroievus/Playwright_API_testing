@@ -1,11 +1,10 @@
 import { APIResponse } from '@playwright/test';
 import { APIRoutes } from '../../utils/constants/Routes';
-import { AddContact, } from '../../utils/types/api/Endpoints/AddContact';
 import { BaseAPIClient } from './BaseAPIClient';
 import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
-  async addContact(data: AddContact): Promise<APIResponse> {
+  async addContact(data): Promise<APIResponse> {                        // AddContact
     return await this.context.post(APIRoutes.Contact, { data })
   }
 

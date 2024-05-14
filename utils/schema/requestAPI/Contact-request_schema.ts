@@ -7,15 +7,15 @@ export const addContactSchema: JSONSchemaType<AddContact> = {
   properties: {
     firstName: { type: "string" },
     lastName: { type: "string" },
-    birthdate: { type: "string" },
-    email: { type: "string" },
-    phone: { type: "number" },
-    street1: { type: "string" },
-    street2: { type: "string" },
-    city: { type: "string" },
-    stateProvince: { type: "string" },
-    postalCode: { type: "number" },
-    country: { type: "string" },
+    birthdate: { type: "string", nullable: true },
+    email: { type: "string", nullable: true },
+    phone: { type: "number", nullable: true },
+    street1: { type: "string", nullable: true },
+    street2: { type: "string", nullable: true },
+    city: { type: "string", nullable: true },
+    stateProvince: { type: "string", nullable: true },
+    postalCode: { type: "number", nullable: true },
+    country: { type: "string", nullable: true },
   },
-  required: ["firstName", "lastName", "birthdate", "email", "phone", "street1", "street2", "city", "stateProvince", "postalCode", "country"]
+  required: ["firstName", "lastName",]
 };
