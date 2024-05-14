@@ -1,20 +1,21 @@
-import { APIRequestContext, APIResponse } from "@playwright/test";
-import { APIRoutes } from "../../utils/constants/ApiRoutes";
-import { APIClient } from "../../utils/types/API/context";
-import { Login } from "../../utils/types/API/authentication";
+import { APIResponse, expect, request } from "@playwright/test";
+import { AuthUser } from "../../utils/types/api/Endpoints/LogInUser";
+import { BaseAPIClient } from "./BaseAPIClient";
+import { APIRoutes } from "../../utils/constants/Routes";
 
-export class AuthAPIClient implements APIClient {
-  constructor(public context: APIRequestContext) {
-  }
+export class AuthAPIClient extends BaseAPIClient {
 
-  async getAuthTokenApi(data: Login): Promise<APIResponse> {
+  async getLogInUserAPI(data: AuthUser): Promise<APIResponse> {
     return await this.context.post(APIRoutes.Login, { data });
   }
 
-  async getAuthToken(data: Login): Promise<string> {
-    const response = await this.getAuthTokenApi(data)
+  async getAPIToken(data: AuthUser) {
+    const response = await this.context.post(APIRoutes.Login, { data }); // Сервер в тестовому проекті не встигає обробляти токени в паралелі
     const json = await response.json();
+    expect(response.status()).toBe(200);
     return json.token;
   }
 
+
 }
+
