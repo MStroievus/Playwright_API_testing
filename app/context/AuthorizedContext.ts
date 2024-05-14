@@ -3,6 +3,7 @@ import { ApiAuth, AuthUser } from '../../utils/types/api/Endpoints/LogInUser';
 import { APIContextFactory } from './ContextFactory';
 import { APIContext } from '../../utils/types/api/clients/APIContext';
 import { AuthAPIClient } from '../api/AuthAPIClient';
+import { ApiContext } from '../../utils/constants/Contexts';
 
 export class AuthenticatedAPIContext implements APIContext {
   private user?: AuthUser;
@@ -24,7 +25,7 @@ export class AuthenticatedAPIContext implements APIContext {
 
     //? Через нашу логіку кожен апі клієнт повинен мати свій контекст, тому нам спочатку потрібно створити контекст і потім передати його в клієнт для того щоб можна було виконувати запити в данному клієнті
     if (this.user && !this.token) {
-      const defaultContext = await APIContextFactory.contextFactory('BaseContext',);
+      const defaultContext = await APIContextFactory.contextFactory(ApiContext.BaseContext);
       const authClient = new AuthAPIClient(defaultContext)
       const token = await authClient.getAPIToken(this.user);
       extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${token}` };
