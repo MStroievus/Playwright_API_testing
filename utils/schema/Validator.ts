@@ -25,7 +25,7 @@ export class Validation {
         throw Error(`Schema validation error: ${prettyError}\nJSON: ${prettyJson}`);
       }
     });
-  };
+  }
 
   async responseValidationSchema<T>({ schema, response }: ValidateResponseProps<T>) {
     await test.step('Validating response schema', async () => {
@@ -34,8 +34,8 @@ export class Validation {
       const { error } = schema.validate(responseBody);
       if (error) {
         const prettyResponse = JSON.stringify(responseBody, null, 2);
-        throw Error(`Response validation error: ${error.message}\nResponse: ${prettyResponse}`);
+        throw Error(`Response validation error: here error -->${error.message}\nResponse: ${prettyResponse}`);
       }
     });
-  };
+  }
 }
