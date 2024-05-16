@@ -22,7 +22,7 @@ export class ValidationAddContactResponseSchema {
     });
   };
 
-  static missingRequiredFieldAddContactErrorResponseSchema = (fieldName: string) => {
+  static missingRequiredFieldErrorResponseSchema = (fieldName: string) => {
     return Joi.object({
       errors: Joi.object().pattern(
         Joi.string().valid(fieldName),

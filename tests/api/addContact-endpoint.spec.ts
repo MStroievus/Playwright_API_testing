@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { AddContact } from '../../utils/types/api/Endpoints/addContact';
 import { addContactSchema as addContactRequestSchema } from '../../utils/schema/requestAPI/contact_request-schema';
-import { ValidationAddContactResponseSchema } from '../../utils/schema/responseAPI/contact_response-schema';
+import { ValidationAddContactResponseSchema as VAL } from '../../utils/schema/responseAPI/contact_response-schema';
 import { test } from '../../app/fixture/combineFixture/contact-api-fixture';
 import '../../utils/extensions/extensions-expect'
 
@@ -60,59 +60,53 @@ test.describe('Add Contact endpoint', async () => {
 
   test('Check status responce Add Contact  endpoint with valid credentials', {
     tag: ['@smoke', '@api', '@regression']
-  }, async ({ contactAPIClient }) => {
-    const response = await contactAPIClient.addContact(contact);
+  }, async ({ authContactAPIClient }) => {
+    const response = await authContactAPIClient.addContact(contact);
 
     expect(response).toHaveStatusCode(201)
     expect(response).toHaveStatusText('Created')
 
-
-
-    const contactID = await contactAPIClient.getIDFromResponse(response)
-    await contactAPIClient.deleteContact(contactID)
+    const contactID = await authContactAPIClient.getIDFromResponse(response)
+    await authContactAPIClient.deleteContact(contactID)
   });
 
 
   test('Check response fields Add Contact  endpoint with valid credentials', {
     tag: ['@smoke', '@api', '@regression']
-  }, async ({ contactAPIClient, validation }) => {
-
-    const response = await contactAPIClient.addContact(contact);
+  }, async ({ authContactAPIClient, validation }) => {
+    const response = await authContactAPIClient.addContact(contact);
 
     await validation.requestValidateSchema({ schema: addContactRequestSchema, json: contact })
-    await validation.responseValidationSchema({ schema: ValidationAddContactResponseSchema.addContactResponseSchema(contact), response: response })
+    await validation.responseValidationSchema({ schema: VAL.addContactResponseSchema(contact), response: response })
 
-
-    const contactID = await contactAPIClient.getIDFromResponse(response)
-    await contactAPIClient.deleteContact(contactID)
+    const contactID = await authContactAPIClient.getIDFromResponse(response)
+    await authContactAPIClient.deleteContact(contactID)
   });
 
   for (let data of fields) {
     test(`Check status with missing ${data.field} name required field`, {
       tag: ['@api', '@regression']
-    }, async ({ contactAPIClient }) => {
-
-      const response = await contactAPIClient.addContact(data.userData);
+    }, async ({ authContactAPIClient }) => {
+      const response = await authContactAPIClient.addContact(data.userData);
 
       expect(response).toHaveStatusCode(400)
       expect(response).toHaveStatusText('Bad Request')
 
-      const contactID = await contactAPIClient.getIDFromResponse(response)
-      await contactAPIClient.deleteContact(contactID)
+      const contactID = await authContactAPIClient.getIDFromResponse(response)
+      await authContactAPIClient.deleteContact(contactID)
     });
   }
 
   for (let data of fields) {
     test(`Check response with missing ${data.field} name required field`, {
       tag: ['@api', '@regression']
-    }, async ({ contactAPIClient, validation }) => {
+    }, async ({ authContactAPIClient, validation }) => {
 
-      const response = await contactAPIClient.addContact(data.userData);
-      await validation.responseValidationSchema({ schema: ValidationAddContactResponseSchema.missingRequiredFieldAddContactErrorResponseSchema(data.field), response: response })
+      const response = await authContactAPIClient.addContact(data.userData);
+      await validation.responseValidationSchema({ schema: VAL.missingRequiredFieldErrorResponseSchema(data.field), response: response })
 
-
-      const contactID = await contactAPIClient.getIDFromResponse(response)
-      await contactAPIClient.deleteContact(contactID)
+      const contactID = await authContactAPIClient.getIDFromResponse(response)
+      await authContactAPIClient.deleteContact(contactID)
     });
   }
 

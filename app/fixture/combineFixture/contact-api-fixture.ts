@@ -1,8 +1,8 @@
 import { mergeTests } from "@playwright/test";
 import { userFixture } from "../logicFixture/users-fixture";
-import { contextFixture } from "../logicFixture/contact-fixture";
+import { contextContactAPIFixture } from "../logicFixture/auth_contact-api-client-fixture";
 
 
 
 
-export const test = mergeTests(userFixture, contextFixture)
+export const test = mergeTests(userFixture, contextContactAPIFixture)

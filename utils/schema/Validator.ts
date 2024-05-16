@@ -14,7 +14,7 @@ type ValidateResponseProps<T> = {
   response: APIResponse;
 };
 
-export class Validation {
+export class Validator {
   async requestValidateSchema<T>({ schema, json }: ValidateSchemaProps<T>) {
     await test.step('Validating json schema', async () => {
       const validate = ajv.compile(schema);

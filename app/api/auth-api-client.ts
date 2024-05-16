@@ -3,7 +3,7 @@ import { AuthUser } from "../../utils/types/api/Endpoints/logInUser";
 import { BaseAPIClient } from "./base-api-client";
 import { APIRoutes } from "../../utils/constants/api-routes";
 
-export class AuthAPIClient extends BaseAPIClient {
+export class UsersAPIClient extends BaseAPIClient {
 
   async getLogInUserAPI(data: AuthUser): Promise<APIResponse> {
     return await this.context.post(APIRoutes.Login, { data });

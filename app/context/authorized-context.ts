@@ -2,7 +2,7 @@ import { APIRequestContext, request } from '@playwright/test';
 import { ApiAuth, AuthUser } from '../../utils/types/api/Endpoints/logInUser';
 import { APIContextFactory } from './context-factory';
 import { APIContext } from '../../utils/types/api/clients/api-context';
-import { AuthAPIClient } from '../api/auth-api-client';
+import { UsersAPIClient } from '../api/auth-api-client';
 import { ApiContext } from '../../utils/constants/contexts';
 
 export class AuthenticatedAPIContext implements APIContext {
@@ -26,7 +26,7 @@ export class AuthenticatedAPIContext implements APIContext {
     //? Через нашу логіку кожен апі клієнт повинен мати свій контекст, тому нам спочатку потрібно створити контекст і потім передати його в клієнт для того щоб можна було виконувати запити в данному клієнті
     if (this.user && !this.token) {
       const defaultContext = await APIContextFactory.contextFactory(ApiContext.BaseContext);
-      const authClient = new AuthAPIClient(defaultContext)
+      const authClient = new UsersAPIClient(defaultContext)
       const token = await authClient.getAPIToken(this.user);
       extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${token}` };
     }
