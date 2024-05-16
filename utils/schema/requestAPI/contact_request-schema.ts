@@ -1,5 +1,5 @@
 import { JSONSchemaType } from "ajv";
-import { AddContact } from "../../types/api/Endpoints/AddContact";
+import { AddContact } from "../../types/api/Endpoints/addContact";
 
 export const addContactSchema: JSONSchemaType<AddContact> = {
   title: 'AddContact',

@@ -1,7 +1,7 @@
 import { APIResponse } from '@playwright/test';
-import { APIRoutes } from '../../utils/constants/Routes';
-import { BaseAPIClient } from './BaseAPIClient';
-import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
+import { APIRoutes } from '../../utils/constants/api-routes';
+import { BaseAPIClient } from './base-api-client';
+import { UpdateContact } from '../../utils/types/api/Endpoints/updateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
   async addContact(data): Promise<APIResponse> {                        // AddContact

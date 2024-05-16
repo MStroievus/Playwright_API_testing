@@ -1,9 +1,9 @@
 import { APIRequestContext, request } from '@playwright/test';
-import { ApiAuth, AuthUser } from '../../utils/types/api/Endpoints/LogInUser';
-import { APIContextFactory } from './ContextFactory';
-import { APIContext } from '../../utils/types/api/clients/APIContext';
-import { AuthAPIClient } from '../api/AuthAPIClient';
-import { ApiContext } from '../../utils/constants/Contexts';
+import { ApiAuth, AuthUser } from '../../utils/types/api/Endpoints/logInUser';
+import { APIContextFactory } from './context-factory';
+import { APIContext } from '../../utils/types/api/clients/api-context';
+import { AuthAPIClient } from '../api/auth-api-client';
+import { ApiContext } from '../../utils/constants/contexts';
 
 export class AuthenticatedAPIContext implements APIContext {
   private user?: AuthUser;

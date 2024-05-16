@@ -1,9 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { expect } from '@playwright/test';
-import playwrightApiMatchers from 'odottaa';
 
-// 2. extend expect with custom API matchers
-expect.extend(playwrightApiMatchers);
 
 require('dotenv').config();
 export default defineConfig(

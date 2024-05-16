@@ -1,14 +1,13 @@
 import test, { expect } from '@playwright/test';
-import { AuthAPIClient } from '../../app/api/AuthAPIClient';
-import { APIContextFactory } from '../../app/context/ContextFactory';
-import { ApiContext } from '../../utils/constants/Contexts';
-import playwrightApiMatchers from 'odottaa';
-import { Validation } from '../../utils/schema/Validator';
-import { LogInUserSchema } from '../../utils/schema/requestAPI/User-request_schema';
-import { LogInUserResponseSchema } from '../../utils/schema/responseAPI/User-request_schema';
+import { AuthAPIClient } from '../../app/api/auth-api-client';
+import { APIContextFactory } from '../../app/context/context-factory';
+import { ApiContext } from '../../utils/constants/contexts';
+import { Validation } from '../../utils/schema/validator';
+import { LogInUserSchema } from '../../utils/schema/requestAPI/user_request_schema';
+import { LogInUserResponseSchema } from '../../utils/schema/responseAPI/user_request-schema';
+import '../../utils/extensions/extensions-expect'
 
 
-expect.extend(playwrightApiMatchers);
 
 
 

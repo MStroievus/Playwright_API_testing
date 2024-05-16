@@ -1,5 +1,5 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
-import { APIClient } from '../../utils/types/api/clients/APIClient';
+import { APIClient } from '../../utils/types/api/clients/api-client';
 
 
 export class BaseAPIClient implements APIClient {

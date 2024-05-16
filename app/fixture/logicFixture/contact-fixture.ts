@@ -1,9 +1,9 @@
 import { test as base } from "@playwright/test";
-import { APIContextFactory } from "../../context/ContextFactory";
-import { ContactAPIClient } from "../../api/ContactAPIClient";
-import { ApiContext } from "../../../utils/constants/Contexts";
-import { Validation } from "../../../utils/schema/Validator";
-import { UserFixture } from "./UsersFixture";
+import { APIContextFactory } from "../../context/context-factory";
+import { ContactAPIClient } from "../../api/contact-api-client";
+import { ApiContext } from "../../../utils/constants/contexts";
+import { Validation } from "../../../utils/schema/validator";
+import { UserFixture } from "./users-fixture";
 
 export type ContextFixture = {
   contactAPIClient: ContactAPIClient

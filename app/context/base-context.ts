@@ -1,5 +1,5 @@
 import { APIRequestContext, request } from '@playwright/test';
-import { APIContext } from '../../utils/types/api/clients/APIContext';
+import { APIContext } from '../../utils/types/api/clients/api-context';
 
 //! newContext() - Створює нові екземпляри APIRequestContext .
 

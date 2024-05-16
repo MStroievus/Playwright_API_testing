@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { AddContact } from '../../types/api/Endpoints/AddContact';
+import { AddContact } from '../../types/api/Endpoints/addContact';
 
 
 export class ValidationAddContactResponseSchema {
