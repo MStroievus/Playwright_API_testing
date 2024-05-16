@@ -1,5 +1,5 @@
-import { APIResponse, expect, request } from "@playwright/test";
-import { AuthUser } from "../../utils/types/api/Endpoints/logInUser";
+import { APIResponse, expect } from "@playwright/test";
+import { AuthUser } from "../../utils/types/api/endpoints/logInUser";
 import { BaseAPIClient } from "./base-api-client";
 import { APIRoutes } from "../../utils/constants/api-routes";
 

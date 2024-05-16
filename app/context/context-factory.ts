@@ -1,7 +1,7 @@
-import { APIRequestContext, request } from "@playwright/test";
-import { APIContext } from "../../utils/types/api/clients/api-context";
+import { APIRequestContext } from "@playwright/test";
+import { APIContext } from "../../utils/types/api/api-Interfaces/api-context";
 import { DefaultAPIContext } from "./base-context";
-import { ApiAuth } from "../../utils/types/api/Endpoints/logInUser";
+import { ApiAuth } from "../../utils/types/api/endpoints/logInUser";
 import { AuthenticatedAPIContext } from './authorized-context'
 
 //! Патерн Фабричний метод пропонує відмовитись від безпосереднього створення об’єктів за допомогою оператора new, замінивши його викликом особливого фабричного методу.

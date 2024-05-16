@@ -1,21 +1,22 @@
 import { APIResponse } from '@playwright/test';
 import { APIRoutes } from '../../utils/constants/api-routes';
 import { BaseAPIClient } from './base-api-client';
-import { UpdateContact } from '../../utils/types/api/Endpoints/UpdateContact';
+import { UpdateContact } from '../../utils/types/api/endpoints/updateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
-  async addContact(data): Promise<APIResponse> {                        // AddContact
-    return await this.context.post(APIRoutes.Contact, { data })
+  async addContact(data): Promise<APIResponse> { // : AddContact
+
+    return await this.context.post(APIRoutes.Contact, { data });
   }
 
-  async getContactList() {
+  async getContactList(): Promise<APIResponse> {
     return await this.context.get(APIRoutes.Contact);
   }
 
   async getContact(id: string): Promise<APIResponse> {
     return await this.context.get(`${APIRoutes.Contact}/${id}`);
   }
-  async updateContactList(id: string, data: UpdateContact) {
+  async updateContactList(id: string, data: UpdateContact): Promise<APIResponse> {
     return await this.context.put(`${APIRoutes.Contact}/${id}`, { data });
   }
 
@@ -23,5 +24,3 @@ export class ContactAPIClient extends BaseAPIClient {
     return await this.context.delete(`${APIRoutes.Contact}/${id}`);
   }
 }
-
-

@@ -1,7 +1,7 @@
 import { APIRequestContext, request } from '@playwright/test';
-import { ApiAuth, AuthUser } from '../../utils/types/api/Endpoints/logInUser';
+import { ApiAuth, AuthUser } from '../../utils/types/api/endpoints/logInUser';
 import { APIContextFactory } from './context-factory';
-import { APIContext } from '../../utils/types/api/clients/api-context';
+import { APIContext } from '../../utils/types/api/api-Interfaces/api-context';
 import { UsersAPIClient } from '../api/auth-api-client';
 import { ApiContext } from '../../utils/constants/contexts';
 

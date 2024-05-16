@@ -1,5 +1,5 @@
 import { JSONSchemaType } from "ajv";
-import { AuthUser } from "../../types/api/Endpoints/logInUser";
+import { AuthUser } from "../../types/api/endpoints/logInUser";
 
 export const LogInUserSchema: JSONSchemaType<AuthUser> = {
   title: 'AddContact',
