@@ -2,8 +2,8 @@ import Joi from 'joi';
 import { AddContact } from '../../types/api/endpoints/addContact';
 
 
-export class ValidationAddContactResponseSchema {
-  static addContactResponseSchema = (user: AddContact) => {
+export class AddContactResponseSchemas {
+  static addContactSchema = (user: AddContact) => {
     return Joi.object({
       _id: Joi.string().alphanum().required(),
       firstName: Joi.string().required().valid(user.firstName),
@@ -22,7 +22,7 @@ export class ValidationAddContactResponseSchema {
     });
   };
 
-  static missingRequiredFieldErrorResponseSchema = (fieldName: string) => {
+  static missingRequiredFieldErrorSchema = (fieldName: string) => {
     return Joi.object({
       errors: Joi.object().pattern(
         Joi.string().valid(fieldName),

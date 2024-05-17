@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
 import { AddContact } from '../../utils/types/api/endpoints/addContact';
-import { addContactSchema } from '../../utils/schema/requestAPI/contact_request-schema';
-import { ValidationAddContactResponseSchema as VAL } from '../../utils/schema/responseAPI/contact_response-schema';
 import { test } from '../../app/fixture/combineFixture/contact-api-fixture';
 import '../../utils/extensions/extensions-expect';
+import { AddContactRequestSchemas } from '../../utils/schema/requestAPI/add_contact_request-schema';
+import { AddContactResponseSchemas } from '../../utils/schema/responseAPI/add_contact_response-schema';
 
 const contact: AddContact = {
   firstName: 'asd2ew123',
@@ -76,8 +76,8 @@ test.describe('Add Contact endpoint', async () => {
     async ({ contactAPIClient, validation }) => {
       const response = await contactAPIClient.addContact(contact);
 
-      await validation.requestValidateSchema({ schema: addContactSchema, json: contact });
-      await validation.responseValidationSchema({ schema: VAL.addContactResponseSchema(contact), response: response });
+      await validation.requestValidateSchema({ schema: AddContactRequestSchemas.addContactSchema(), json: contact });
+      await validation.responseValidationSchema({ schema: AddContactResponseSchemas.addContactSchema(contact), response: response });
 
     }
   );
@@ -106,7 +106,7 @@ test.describe('Add Contact endpoint', async () => {
       async ({ contactAPIClient, validation }) => {
         const response = await contactAPIClient.addContact(data.userData);
         await validation.responseValidationSchema({
-          schema: VAL.missingRequiredFieldErrorResponseSchema(data.field),
+          schema: AddContactResponseSchemas.missingRequiredFieldErrorSchema(data.field),
           response: response
         });
       }

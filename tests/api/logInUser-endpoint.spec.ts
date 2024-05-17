@@ -1,18 +1,18 @@
 import { expect } from '@playwright/test';
-import { LogInUserSchema } from '../../utils/schema/requestAPI/user_request_schema';
-import { ValidationLogInUserResponseSchema } from '../../utils/schema/responseAPI/user_request-schema';
 import { test } from '../../app/fixture/combineFixture/users-client-api-fixture';
 import '../../utils/extensions/extensions-expect'
+import { LogInUserRequestSchemas } from '../../utils/schema/requestAPI/log_in_users_request-schema';
+import { LogInUserResponseSchemas } from '../../utils/schema/responseAPI/log_in_user_response-schema';
 
 const userAuth = {
-  email: process.env.TEST_USER_EMAIL!,  //--> знак оклику каже що в нас точно є вони, що TS не видавав помилку
+  email: process.env.TEST_USER_EMAIL!,  //--> знак оклику каже що в нас точно є вони, щоб TS не видавав помилку
   password: process.env.TEST_USER_PASSWORD!
 };
 
 
 test.describe('Users', async () => {
 
-  test('Check status Log in user with valid data', {
+  test('Check status LogInUser endpoint with valid data', {
     tag: ['@smoke', '@api', '@regression']
   },
     async ({ usersAPIClient }) => {
@@ -23,14 +23,14 @@ test.describe('Users', async () => {
 
     }
   );
-  test('Check response Log in user with valid data', {
+  test('Check response LogInUser endpoint with valid data', {
     tag: ['@smoke', '@api', '@regression']
   },
     async ({ usersAPIClient, validation }) => {
       const response = await usersAPIClient.getLogInUserAPI(userAuth);
 
-      await validation.requestValidateSchema({ schema: LogInUserSchema, json: userAuth });
-      await validation.responseValidationSchema({ schema: ValidationLogInUserResponseSchema.LogInUserResponseSchema(), response: response });
+      await validation.requestValidateSchema({ schema: LogInUserRequestSchemas.logInUserSchema(), json: userAuth });
+      await validation.responseValidationSchema({ schema: LogInUserResponseSchemas.logInUserResponseSchema(), response: response });
     }
   );
 });

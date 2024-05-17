@@ -1,8 +1,9 @@
 import Joi from 'joi';
 
 //? Ідея полягає в тому щоб  протестувати всі можливі,  респонси(оцікувані помилки в  нашому апі клієнті), з моєї практики це 4-12 оціваних респонсів які схожі між собою
-export class ValidationLogInUserResponseSchema {
-  static LogInUserResponseSchema = () => {
+
+export class LogInUserResponseSchemas {
+  static logInUserResponseSchema = () => {
     return Joi.object({
       user: Joi.object({
         _id: Joi.string().required(),

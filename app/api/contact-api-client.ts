@@ -7,7 +7,7 @@ export class ContactAPIClient extends BaseAPIClient {
   async addContact(data): Promise<APIResponse> {
     const response = await this.context.post(APIRoutes.Contact, { data });
     const id = await this.getIDFromResponse(response);
-    this.addContactId(id);
+    this.addID(id);
     return response;
   }
 

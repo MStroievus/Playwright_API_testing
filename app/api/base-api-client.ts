@@ -4,7 +4,6 @@ import { APIRoutes } from '../../utils/constants/api-routes';
 
 export class BaseAPIClient implements APIClient {
   private contactIds: string[] = [];
-  private array = [1, 2, 2, 3, 4]
 
   constructor(public context: APIRequestContext) { }
 
@@ -13,12 +12,11 @@ export class BaseAPIClient implements APIClient {
     return json._id;
   }
 
-  addContactId(id: string) {
+  addID(id: string) {
     this.contactIds.push(id);
   }
 
-  async deleteAllContacts() {
-    console.log('THERE yours ids ---->', this.contactIds, this.array)
+  async deleteEntities() {
     for (const id of this.contactIds) {
       await this.context.delete(`${APIRoutes.Contact}/${id}`);
     }

@@ -17,7 +17,7 @@ export const contextContactAPIFixture = base.extend<AuthContactAPIClient, UserFi
 
     await use(contactAPIClient);
 
-    await contactAPIClient.deleteAllContacts()
+    await contactAPIClient.deleteEntities()
   },
 
   validation: async ({ }, use) => {
