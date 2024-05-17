@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import { APIContext } from "../../utils/types/api/api-Interfaces/api-context";
+import { APIContext } from "../../utils/types/api/api-interfaces/api-context";
 import { DefaultAPIContext } from "./base-context";
 import { ApiAuth } from "../../utils/types/api/endpoints/logInUser";
 import { AuthenticatedAPIContext } from './authorized-context'

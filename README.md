@@ -17,33 +17,51 @@ Make sure you have the correct version of Node installed, which can be found in 
 ```
 PLAYWRIGHT TEST FINAL PROJECT
 ├── .github
-│   └── workflows
-│       └── playwright.yml                              # GitHub Actions workflow file
+│   └── workflows                                        # GitHub Actions workflow file
+│
+├── .vscode                                              #
+│
 ├── app
+│   │
 │   ├── api
-│   │   ├── AuthAPIClient.ts                            # Handles authentication API requests
-│   │   ├── BaseAPIClient.ts                            # Base class for API clients with error handling
-│   │   └── ContactAPIClient.ts                         # Handles contact-related API requests
-│   └── context
-│       ├── AuthorizedContext.ts                        # Context for authenticated requests
-│       ├── BaseContext.ts                              # Base context for API requests
-│       └── contextFactory.ts                           # Factory for creating API contexts
+│   │
+│   ├── context
+│   │
+│   └── fixture
+│       │
+│       ├── combineFixture
+│       │
+│       └── LogicFixture
+│
 ├── tests
+│   │
 │   ├── api
-│   │   └── contacts
-│   │       └── AddContact.specs.ts                     # Tests for adding contacts via API
-│   └── users
-│       └── LoginUser.specs.ts                          # Tests for user login via API
-├── e2e                                                 # Directory for end-to-end tests
+│   │
+│   └── e2e
+│
 ├── utils
-│   └── constants
-│       └── Routes.ts                                   # Constants for API routes
-└── types
-    ├── api
-    │   └── clients                                     # Types for API clients
-    └── Endpoints
-        ├── AddContact.ts                               # Type definitions for adding contacts endpoint
-        └── LoginUser.ts                                # Type definitions for user login
+│   │
+│   ├── constants
+│   │
+│   ├── data
+│   │
+│   ├── extensions
+│   │
+│   ├── schema
+│   │   │
+│   │   ├── requestAPi
+│   │   │
+│   │   └── responseAPI
+│   │
+│   └── types
+│       └── api
+│           │
+│           ├── api-interfaces
+│           │
+│           └── endpoints
+|____________________________________________________
+
+
 ```
 
 <!-- ### Yarn
