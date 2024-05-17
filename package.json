@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:api": "playwright test --project=API"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { AddContact } from '../../utils/types/api/Endpoints/addContact';
+import { AddContact } from '../../utils/types/api/endpoints/addContact';
 import { addContactSchema } from '../../utils/schema/requestAPI/contact_request-schema';
 import { ValidationAddContactResponseSchema as VAL } from '../../utils/schema/responseAPI/contact_response-schema';
 import { test } from '../../app/fixture/combineFixture/contact-api-fixture';
@@ -55,7 +55,7 @@ const fields = [contactLastName, contactFirstName];
 
 test.describe('Add Contact endpoint', async () => {
   test(
-    'Check status response Add Contact  endpoint with valid credentials',
+    'Check status code Add Contact  endpoint with valid credentials',
     {
       tag: ['@smoke', '@api', '@regression']
     },
@@ -65,13 +65,11 @@ test.describe('Add Contact endpoint', async () => {
       expect(response).toHaveStatusCode(201);
       expect(response).toHaveStatusText('Created');
 
-      const contactID = await contactAPIClient.getIDFromResponse(response);
-      await contactAPIClient.deleteContact(contactID);
     }
   );
 
   test(
-    'Check response fields Add Contact  endpoint with valid credentials',
+    'Check response Add Contact  endpoint with valid credentials',
     {
       tag: ['@smoke', '@api', '@regression']
     },
@@ -81,8 +79,6 @@ test.describe('Add Contact endpoint', async () => {
       await validation.requestValidateSchema({ schema: addContactSchema, json: contact });
       await validation.responseValidationSchema({ schema: VAL.addContactResponseSchema(contact), response: response });
 
-      const contactID = await contactAPIClient.getIDFromResponse(response);
-      await contactAPIClient.deleteContact(contactID);
     }
   );
 

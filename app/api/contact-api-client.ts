@@ -4,9 +4,11 @@ import { BaseAPIClient } from './base-api-client';
 import { UpdateContact } from '../../utils/types/api/endpoints/updateContact';
 
 export class ContactAPIClient extends BaseAPIClient {
-  async addContact(data): Promise<APIResponse> { // : AddContact
-
-    return await this.context.post(APIRoutes.Contact, { data });
+  async addContact(data): Promise<APIResponse> {
+    const response = await this.context.post(APIRoutes.Contact, { data });
+    const id = await this.getIDFromResponse(response);
+    this.addContactId(id);
+    return response;
   }
 
   async getContactList(): Promise<APIResponse> {
