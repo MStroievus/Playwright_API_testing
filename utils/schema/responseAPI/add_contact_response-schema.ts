@@ -3,20 +3,20 @@ import { AddContact } from '../../types/api/endpoints/addContact';
 
 
 export class AddContactResponseSchemas {
-  static addContactSchema = (user: AddContact) => {
+  static addContactSchema = (user: Partial<AddContact>) => {
     return Joi.object({
       _id: Joi.string().alphanum().required(),
       firstName: Joi.string().required().valid(user.firstName),
       lastName: Joi.string().required().valid(user.lastName),
-      birthdate: Joi.string().valid(user.birthdate),
-      email: Joi.string().email().valid(user.email),
-      phone: Joi.string().valid(user.phone?.toString()),
-      street1: Joi.string().valid(user.street1),
-      street2: Joi.string().valid(user.street2),
-      city: Joi.string().valid(user.city),
-      stateProvince: Joi.string().valid(user.stateProvince),
-      postalCode: Joi.string().valid(user.postalCode?.toString()),
-      country: Joi.string().valid(user.country),
+      birthdate: user.birthdate ? Joi.string().valid(user.birthdate).optional() : Joi.string().optional(),
+      email: user.email ? Joi.string().email().valid(user.email).optional() : Joi.string().email().optional(),
+      phone: user.phone ? Joi.string().valid(user.phone.toString()).optional() : Joi.string().optional(),
+      street1: user.street1 ? Joi.string().valid(user.street1).optional() : Joi.string().optional(),
+      street2: user.street2 ? Joi.string().valid(user.street2).optional() : Joi.string().optional(),
+      city: user.city ? Joi.string().valid(user.city).optional() : Joi.string().optional(),
+      stateProvince: user.stateProvince ? Joi.string().valid(user.stateProvince).optional() : Joi.string().optional(),
+      postalCode: user.postalCode ? Joi.string().valid(user.postalCode.toString()).optional() : Joi.string().optional(),
+      country: user.country ? Joi.string().valid(user.country).optional() : Joi.string().optional(),
       owner: Joi.string().alphanum().required(),
       __v: Joi.number().required()
     });

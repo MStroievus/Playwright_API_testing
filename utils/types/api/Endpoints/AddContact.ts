@@ -2,7 +2,7 @@
 export interface AddContact {
   firstName: string;
   lastName: string;
-  birthdate?: string;
+  birthdate?: string | Date;
   email?: string;
   phone?: number;
   street1?: string;
@@ -11,9 +11,4 @@ export interface AddContact {
   stateProvince?: string;
   postalCode?: number;
   country?: string;
-}
-
-
-export interface AddContactWithID extends AddContact {
-  id?: string
 }
