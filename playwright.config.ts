@@ -20,5 +20,13 @@ export default defineConfig({
         trace: 'retain-on-first-failure',
       },
     },
+    {
+      name: 'E2E',
+      grep: /@e2e/,
+      use: {
+        ...devices['Desktop Chrome'],
+        trace: 'retain-on-first-failure',
+      },
+    },
   ],
 });
