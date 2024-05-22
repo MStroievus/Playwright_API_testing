@@ -1,0 +1,4 @@
+testID,email,password
+id1,invalidemail@domain,validPassword
+id2,validEmail,invalidpassword
+id3,invalidemail@domain,invalidpassword
