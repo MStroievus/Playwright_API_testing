@@ -2,12 +2,13 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../app/pages/login-page';
 import { ContactList } from '../../app/pages/contact_list-page';
 import { csvReader } from '../../utils/helpers/csv-helper';
+import { PageUrl } from '../../utils/constants/pages';
 
 test.describe('Login page', () => {
   const invalidLoginData = csvReader('utils/data/csv-files/invalid-login-data.csv');
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto(PageUrl.homePage);
   });
 
   test(
@@ -36,6 +37,8 @@ test.describe('Login page', () => {
 
         await loginPage.fillForm(record.email, record.password);
         await loginPage.getButtonByName('Submit').click();
+        await expect(loginPage.errorMessage).toBeVisible()
+        await expect(loginPage.errorMessage).toHaveText('Incorrect username or password')
       }
     );
   }

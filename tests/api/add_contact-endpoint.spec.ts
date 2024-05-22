@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { AddContact } from '../../utils/types/api/endpoints/addContact';
+import { AddContactEndpoint } from '../../utils/types/api/endpoints/addContact';
 import { test } from '../../app/fixture/combineFixture/contact-api-fixture';
 import '../../utils/extensions/extensions-expect';
 import { AddContactRequestSchemas } from '../../utils/schema/requestAPI/add_contact_request-schema';
@@ -12,7 +12,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@smoke', '@api', '@regression']
     },
     async ({ contactAPIClient, builder }) => {
-      const contact = builder.buildFullObject().build() as AddContact
+      const contact = builder.buildFullObject().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
       expect(response).toHaveStatusCode(201);
       expect(response).toHaveStatusText('Created');
@@ -25,7 +25,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@smoke', '@api', '@regression']
     },
     async ({ contactAPIClient, validation, builder }) => {
-      const contact = builder.setFirstName().setLastName().build() as AddContact;
+      const contact = builder.setFirstName().setLastName().build() as AddContactEndpoint;
       const response = await contactAPIClient.addContact(contact);
 
       await validation.requestValidateSchema({ schema: AddContactRequestSchemas.addContactSchema(), json: contact });

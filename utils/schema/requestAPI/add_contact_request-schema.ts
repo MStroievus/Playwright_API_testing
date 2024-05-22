@@ -1,9 +1,9 @@
 import { JSONSchemaType } from "ajv";
-import { AddContact } from "../../types/api/endpoints/addContact";
+import { AddContactEndpoint } from "../../types/api/endpoints/addContact";
 
 export class AddContactRequestSchemas {
 
-  public static addContactSchema(): JSONSchemaType<AddContact> {
+  public static addContactSchema(): JSONSchemaType<AddContactEndpoint> {
     return {
       title: 'AddContact',
       type: "object",

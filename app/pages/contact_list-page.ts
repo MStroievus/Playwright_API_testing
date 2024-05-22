@@ -4,7 +4,7 @@ import { BasePage } from "./base-page";
 export class ContactList extends BasePage {
   public readonly pagePath: "/contactList";
   public readonly title = this.page.locator('h1')
-
+  public readonly addANewContactButton = this.page.getByRole('button', { name: 'Add a New Contact' })
 
 
 

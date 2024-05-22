@@ -1,4 +1,4 @@
 testID,email,password
-id1,invalidemail@domain,validPassword
-id2,validEmail,invalidpassword
-id3,invalidemail@domain,invalidpassword
+invalid email,invalidemail@domain,validPassword
+invalid password,validEmail,invalidpassword
+invalid email and password,invalidemail@domain,invalidpassword

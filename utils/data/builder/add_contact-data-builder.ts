@@ -1,9 +1,9 @@
-import { AddContact } from "../../types/api/endpoints/addContact";
+import { AddContactEndpoint } from "../../types/api/endpoints/addContact";
 import { faker } from "@faker-js/faker";
 
 
 export class AddContactBuilder {
-  private addContact: Partial<AddContact> = {
+  private addContact: Partial<AddContactEndpoint> = {
 
   };
 
@@ -79,7 +79,7 @@ export class AddContactBuilder {
 
 
 
-  build(): Partial<AddContact> {
+  build(): Partial<AddContactEndpoint> {
     return this.addContact;
   }
 

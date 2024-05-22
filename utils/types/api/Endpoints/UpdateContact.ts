@@ -1,5 +1,5 @@
-import { AddContact } from "./addContact";
+import { AddContactEndpoint } from "./addContact";
 
-export interface UpdateContact extends AddContact {
+export interface UpdateContactEndpoint extends AddContactEndpoint {
 
 }

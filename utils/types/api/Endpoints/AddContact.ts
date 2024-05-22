@@ -1,5 +1,5 @@
 
-export interface AddContact {
+export interface AddContactEndpoint {
   firstName: string;
   lastName: string;
   birthdate?: string | Date;

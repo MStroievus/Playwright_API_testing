@@ -1,9 +1,9 @@
 import Joi from 'joi';
-import { AddContact } from '../../types/api/endpoints/addContact';
+import { AddContactEndpoint } from '../../types/api/endpoints/addContact';
 
 
 export class AddContactResponseSchemas {
-  static addContactSchema = (user: Partial<AddContact>) => {
+  static addContactSchema = (user: Partial<AddContactEndpoint>) => {
     return Joi.object({
       _id: Joi.string().alphanum().required(),
       firstName: Joi.string().required().valid(user.firstName),

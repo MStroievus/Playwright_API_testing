@@ -1,11 +1,11 @@
 import { APIResponse } from '@playwright/test';
 import { APIRoutes } from '../../utils/constants/api-routes';
 import { BaseAPIClient } from './base-api-client';
-import { UpdateContact } from '../../utils/types/api/endpoints/updateContact';
-import { AddContact } from '../../utils/types/api/endpoints/addContact';
+import { UpdateContactEndpoint } from '../../utils/types/api/endpoints/updateContact';
+import { AddContactEndpoint } from '../../utils/types/api/endpoints/addContact';
 
 export class ContactAPIClient extends BaseAPIClient {
-  async addContact(data: Partial<AddContact>): Promise<APIResponse> {    //?  partial<T> https://www.typescriptlang.org/docs/handbook/utility-types.html 
+  async addContact(data: Partial<AddContactEndpoint>): Promise<APIResponse> {    //?  partial<T> https://www.typescriptlang.org/docs/handbook/utility-types.html 
     const response = await this.context.post(APIRoutes.Contact, { data });
     const id = await this.getIDFromResponse(response);
     this.addID(id);
@@ -19,7 +19,7 @@ export class ContactAPIClient extends BaseAPIClient {
   async getContact(id: string): Promise<APIResponse> {
     return await this.context.get(`${APIRoutes.Contact}/${id}`);
   }
-  async updateContactList(id: string, data: UpdateContact): Promise<APIResponse> {
+  async updateContactList(id: string, data: UpdateContactEndpoint): Promise<APIResponse> {
     return await this.context.put(`${APIRoutes.Contact}/${id}`, { data });
   }
 
