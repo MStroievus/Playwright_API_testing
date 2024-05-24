@@ -1,4 +1,10 @@
 export enum ApiContext {
-  AuthContext = 'AuthContext',
-  BaseContext = 'BaseContext'
+  AuthAPIContext = 'AuthContext',
+  BaseAPIContext = 'BaseContext',
+}
+
+
+export enum BrowserContext {
+  BaseBrowserContext = 'BaseBrowserContext',
+  AuthBrowserContext = 'AuthBrowserContext'
 }

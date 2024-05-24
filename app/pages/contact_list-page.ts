@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./base-page";
+import { AddContactPageModel } from "../../utils/model/add_contact_page-model";
 
 export class ContactList extends BasePage {
   public readonly pagePath: "/contactList";
@@ -11,5 +12,10 @@ export class ContactList extends BasePage {
 
   async checkTitle() {
     await expect(this.title).toHaveText('Contact List')
+  }
+
+  async getNeedContact(data: AddContactPageModel) {
+    const emailRows = this.page.locator('tr td:nth-child(4)', { hasText: data.email })
+    await emailRows.click()
   }
 }
