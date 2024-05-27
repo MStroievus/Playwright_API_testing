@@ -1,8 +1,6 @@
-[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
+# Playwright API testing
 
-# demo-playwright-test
-
-This is a sample project to demonstrate [Playwright Test](https://playwright.dev/) usage, running tests against Contact List App [API](https://documenter.getpostman.com/view/4012288/TzK2bEa8/) and [Front-end](https://thinking-tester-contact-list.herokuapp.com/).
+This is a sample project to demonstrate [Playwright Test](https://playwright.dev/) usage, running tests against Contact List App [API](https://documenter.getpostman.com/view/4012288/TzK2bEa8/) and [Front-end](https://thinking-tester-contact-list.herokuapp.com/) (FE only started).
 
 ## Pre-requisites
 
@@ -10,67 +8,87 @@ This is a sample project to demonstrate [Playwright Test](https://playwright.dev
 
 Make sure you have the correct version of Node installed, which can be found in the `.nvmrc` file in the root of the repository. I also recommend running `npm i` to install all dependencies
 
+## Packages and Descriptions
+
+### [ajv](https://www.npmjs.com/package/ajv)
+
+A JSON Schema validator for JavaScript, providing high-performance validation and error handling.
+
+### [csv-parse](https://www.npmjs.com/package/csv-parse)
+
+A CSV parsing library for JavaScript, allowing for asynchronous reading and parsing of CSV files.
+
+### [dotenv](https://www.npmjs.com/package/dotenv)
+
+A module that loads environment variables from a .env file into process.env, enhancing configuration management.
+
+### [faker](https://www.npmjs.com/package/faker)
+
+A library for generating fake data, useful for creating realistic test data for various scenarios.
+
+### [joi](https://www.npmjs.com/package/joi)
+
+A powerful schema description language and data validator for JavaScript, used to ensure data integrity and validity.
+
+### [uuid](https://www.npmjs.com/package/uuid)
+
+A library for generating unique identifiers (UUIDs), widely used for creating unique keys in databases and other systems.
+
 ## Structure
 
-## Code is structured as shown below:
+### Code is structured as shown below:
 
 ```
-PLAYWRIGHT TEST FINAL PROJECT
-├── .github
-│   └── workflows                                        # GitHub Actions workflow file
+
+PLAYWRIGHT_TEST_FINAL_PROJECT
+├── auth
 │
-├── .vscode                                              #
+├── .github
+│   └── workflows                                        # GitHub Actions workflow files
+│
+├── .vscode
+│   └── settings.json
 │
 ├── app
-│   │
 │   ├── api
-│   │
+│   ├── components
 │   ├── context
-│   │
 │   └── fixture
-│       │
 │       ├── combineFixture
-│       │
-│       └── LogicFixture
+│       └── logicFixture
+│
+├── pages
+│
+├── playwright-report
+│
+├── test-results
 │
 ├── tests
-│   │
-│   ├── api
-│   │
-│   └── e2e
 │
 ├── utils
-│   │
 │   ├── constants
-│   │
 │   ├── data
-│   │
+│   ├── builder
+│   ├── csv-files
 │   ├── extensions
-│   │
+│   ├── helpers
+│   ├── model
 │   ├── schema
-│   │   │
-│   │   ├── requestAPi
-│   │   │
-│   │   └── responseAPI
-│   │
+│   │   ├── requestAPI
+│   │   ├── responseAPI
+│   │   └── validators.ts
 │   └── types
-│       └── api
-│           │
-│           ├── api-interfaces
-│           │
-│           └── endpoints
-|____________________________________________________
+│       ├── api
+│       │   ├── api-interfaces
+│       │   └── endpoints
+│       └── web
+│           ├── browser
+│           └── pages
+|___________________________________________
+
 
 
 ```
-
-<!-- ### Yarn
-
-The project also uses [Yarn](https://yarnpkg.com/), so follow the [installation steps](https://classic.yarnpkg.com/lang/en/docs/install/) in case you don't have it.
-
-### Docker
-
-The projects used Docker to spin up ServeRest API. Follow instructions from their [official docs](https://docs.docker.com/engine/install/) to install Docker engine in your environment. -->
 
 **PS:** Note that different test levels are configured to have proper extensions (e.g: `*.api.test.js`).
 
