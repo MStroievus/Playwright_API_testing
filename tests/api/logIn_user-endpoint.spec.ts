@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test';
-import { test } from '../../app/fixture/combineFixture/users-client-api-fixture';
 import '../../utils/extensions/extensions-expect'
 import { LogInUserRequestSchemas } from '../../utils/schema/requestAPI/log_in_users_request-schema';
 import { LogInUserResponseSchemas } from '../../utils/schema/responseAPI/log_in_user_response-schema';
+import { test } from '../../app/fixture/users-api-client-fixture';
 
 const userAuth = {
   email: process.env.TEST_USER_EMAIL!,  //--> знак оклику каже що в нас точно є вони, щоб TS не видавав помилку

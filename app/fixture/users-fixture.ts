@@ -1,5 +1,5 @@
 import { test as base } from "@playwright/test";
-import { ApiAuth, AuthUser } from "../../../utils/types/api/endpoints/logInUser";
+import { ApiAuth, AuthUser } from "../../utils/types/api/endpoints/logInUser";
 
 export type UserFixture = {
   testUser: ApiAuth

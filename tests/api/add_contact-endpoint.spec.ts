@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
 import { AddContactEndpoint } from '../../utils/types/api/endpoints/addContact';
-import { test } from '../../app/fixture/combineFixture/contact-api-fixture';
 import '../../utils/extensions/extensions-expect';
 import { AddContactRequestSchemas } from '../../utils/schema/requestAPI/add_contact_request-schema';
 import { AddContactResponseSchemas } from '../../utils/schema/responseAPI/add_contact_response-schema';
+import { test } from '../../app/fixture/auth_contact-api-client-fixture';
 
 test.describe('Add Contact endpoint with valid data', async () => {
   test(
