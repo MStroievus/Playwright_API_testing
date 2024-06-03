@@ -115,6 +115,5 @@ PLAYWRIGHT_TEST_FINAL_PROJECT
 - Start Serverest server: `yarn api:start`
 - Run API tests: `yarn test:api`
 - Run End-to-end tests: `yarn test:e2e`
-- Run Visual Regression tests: `yarn test:visual` (you will need a Happo account and `HAPPO_API_KEY`/`HAPPO_API_SECRET` environment variables set)
 
 ### Debugging
