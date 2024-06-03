@@ -1,8 +1,8 @@
 import { test as base, mergeTests } from "@playwright/test";
 import { APIContextFactory } from "../context/context-factory";
 import { ApiContext } from "../../utils/constants/contexts";
-import { UsersAPIClient } from "../api/auth-api-client";
 import { Validator } from "../../utils/schema/validator";
+import { UsersAPIClient } from "../api/users-api-client";
 
 export type ContextFixture = {
   usersAPIClient: UsersAPIClient

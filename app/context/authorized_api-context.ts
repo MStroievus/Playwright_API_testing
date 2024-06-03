@@ -1,42 +1,38 @@
 import { APIRequestContext, request } from '@playwright/test';
 import { ApiAuth, AuthUser } from '../../utils/types/api/endpoints/logInUser';
-import { APIContextFactory } from './context-factory';
-import { APIContext } from '../../utils/types/api/api-interfaces/api-context';
-import { UsersAPIClient } from '../api/auth-api-client';
-import { ApiContext } from '../../utils/constants/contexts';
+import { BaseAPIContext } from './base_api-context';
+import { UsersAPIClient } from '../api/users-api-client';
 
-export class AuthenticatedAPIContext implements APIContext {
+export class AuthenticatedAPIContext extends BaseAPIContext {
   protected user?: AuthUser;
   protected token?: string;
 
-  constructor({ user, token }: ApiAuth) {
+  constructor(baseURL: string, { user, token }: ApiAuth) {
+    super(baseURL);
     this.user = user;
     this.token = token;
   }
+
   async createContext(): Promise<APIRequestContext> {
-    let extraHTTPHeaders: { [key: string]: string } = {
-      accept: '*/*',
-      'Content-Type': 'application/json'
-    };
+    let extraHTTPHeaders = { ...this.extraHTTPHeaders };
 
     if (!this.user && !this.token) {
-      throw Error('Provide "user" or "authToken"');
+      throw new Error('Provide "user" or "authToken"');
     }
 
-    //? Через нашу логіку кожен апі клієнт повинен мати свій контекст, тому нам спочатку потрібно створити контекст і потім передати його в клієнт для того щоб можна було виконувати запити в данному клієнті
     if (this.user && !this.token) {
-      const defaultContext = await APIContextFactory.contextFactory(ApiContext.BaseAPIContext);
-      const authClient = new UsersAPIClient(defaultContext)
-      const token = await authClient.getAPIToken(this.user);
-      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${token}` };
+      const defaultContext = await super.createContext();
+      const authClient = new UsersAPIClient(defaultContext);
+      this.token = await authClient.getAPIToken(this.user);
+      extraHTTPHeaders.Authorization = `Bearer ${this.token}`;
     }
 
     if (this.token && !this.user) {
-      extraHTTPHeaders = { ...extraHTTPHeaders, Authorization: `Bearer ${this.token}` };
+      extraHTTPHeaders.Authorization = `Bearer ${this.token}`;
     }
 
     return await request.newContext({
-      baseURL: process.env.BASE_URL,
+      baseURL: this.baseURL,
       extraHTTPHeaders
     });
   }

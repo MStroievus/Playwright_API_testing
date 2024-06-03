@@ -2,6 +2,23 @@
 
 This is a sample project to demonstrate [Playwright Test](https://playwright.dev/) usage, running tests against Contact List App [API](https://documenter.getpostman.com/view/4012288/TzK2bEa8/) and [Front-end](https://thinking-tester-contact-list.herokuapp.com/) (FE only started).
 
+## Вступ
+
+За допомогою плейврайта побудуємо фреймворк для тестування апі який буде виконувати наступні дії
+
+- Валідація реквест схеми
+- Валідація респонс схеми
+- Валідація статус кодів
+- Звітність із раном кодів
+
+### Реалізація
+
+1. Для початку давайте створимо АПІ інтрефейс АПІ клієнта, який буде реалізовувати нашо головну ідею приймати контекста та виконувати запити
+
+![alt text](./photo_for_README/ApiContext.png)
+
+2. Далі ми створимо інтерфес АПІ Контексту,
+
 ## Pre-requisites
 
 ### Node.js
@@ -101,33 +118,3 @@ PLAYWRIGHT_TEST_FINAL_PROJECT
 - Run Visual Regression tests: `yarn test:visual` (you will need a Happo account and `HAPPO_API_KEY`/`HAPPO_API_SECRET` environment variables set)
 
 ### Debugging
-
-<!--
-To run Playwright in debug mode, pass the `PWDEBUG=1` environment variable in the command, for example: `PWDEBUG=1 yarn test:e2e`
-
-When a test fails, the project is configured to save screenshots and a trace file, inside `test-reports` folder. You can run [Playwright's Trace Viewer](https://playwright.dev/docs/trace-viewer) with `show-trace` command: `yarn playwright show-trace test-results/some-test-path/trace.zip`
-
-Please refer to [Playwright's Debugging docs](https://playwright.dev/docs/debug) for further information on debugging features.
-
-### Tips
-
-- To stop running ServeRest container: `docker stop serverest`
-- To restart ServeRest container: `docker restart serverest`
-- To remove ServeRest container (no need to stop it first, the `-f` option will force its removal even if it is running): `docker rm -f serverest`
-
-## Reporting
-
-Test reports can be generated with [Allure reports](https://github.com/allure-framework/allure2), following the steps below:
-
-- Generate report: `yarn allure:generate`
-- Open HTML report: `yarn allure:open`
-
-## CI
-
-The project uses [GitHub Actions](https://docs.github.com/en/actions) and tests are run automatically on PRs and on merge to `main` branch.
-
----
-
-## Contributing
-
-We have a [Kanban board](https://github.com/stefanteixeira/demo-playwright-test/projects/1) with a backlog of tasks to work on. If you are interested in contributing to the project, please reach out to @stefanteixeira to become a collaborator and get a task assigned to you. --> -->

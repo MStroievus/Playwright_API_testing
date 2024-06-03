@@ -5,7 +5,7 @@ import { LogInUserResponseSchemas } from '../../utils/schema/responseAPI/log_in_
 import { test } from '../../app/fixture/users-api-client-fixture';
 
 const userAuth = {
-  email: process.env.TEST_USER_EMAIL!,  //--> знак оклику каже що в нас точно є вони, щоб TS не видавав помилку
+  email: process.env.TEST_USER_EMAIL!,
   password: process.env.TEST_USER_PASSWORD!
 };
 
