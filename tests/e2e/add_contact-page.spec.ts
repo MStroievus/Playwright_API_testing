@@ -27,7 +27,7 @@ test.describe('Add contact', () => {
     }
   );
 
-  test.only(
+  test(
     'Update contact1',
     {
       tag: ['@e2e', '@regression', '@smoke']
