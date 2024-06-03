@@ -12,7 +12,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@smoke', '@api', '@regression']
     },
     async ({ contactAPIClient, builder }) => {
-      const contact = builder.buildFullObject().build() as AddContactEndpoint
+      const contact = builder.fullObject().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
       expect(response).toHaveStatusCode(201);
       expect(response).toHaveStatusText('Created');

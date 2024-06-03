@@ -62,7 +62,7 @@ export class AddContactBuilder {
     return this;
   }
 
-  buildFullObject() {
+  fullObject() {
     return this
       .setFirstName()
       .setLastName()
