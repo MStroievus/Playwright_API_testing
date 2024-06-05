@@ -1,5 +1,5 @@
 import { APIRequestContext, Page } from "@playwright/test";
-import { IPage } from "../../utils/types/web/pages/page";
+import { IPage } from "../utils/types/web/pages/page";
 
 export abstract class BasePage implements IPage {
   abstract readonly pagePath: string;

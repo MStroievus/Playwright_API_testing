@@ -1,8 +1,7 @@
-import { expect } from '@playwright/test';
-import '../../utils/extensions/extensions-expect'
-import { LogInUserRequestSchemas } from '../../utils/schema/requestAPI/log_in_users_request-schema';
-import { LogInUserResponseSchemas } from '../../utils/schema/responseAPI/log_in_user_response-schema';
-import { test } from '../../app/fixture/users-api-client-fixture';
+import { expect } from "@playwright/test";
+import { test } from "../../app/fixture/users-api-client-fixture";
+import { LogInUserRequestSchemas } from "../../app/utils/schema/requestAPI/log_in_users_request-schema";
+import { LogInUserResponseSchemas } from "../../app/utils/schema/responseAPI/log_in_user_response-schema";
 
 const userAuth = {
   email: process.env.TEST_USER_EMAIL!,

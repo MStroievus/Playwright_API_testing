@@ -1,13 +1,18 @@
-import { test as base } from "@playwright/test";
-import { APIContextFactory } from "../context/context-factory";
-import { ContactAPIClient } from "../api/contact-api-client";
-import { ApiContext } from "../../utils/constants/contexts";
-import { Validator } from "../../utils/schema/validator";
-import { AddContactBuilder } from "../../utils/data/builder/add_contact-data-builder";
 import { mergeTests } from "@playwright/test";
-import { UserFixture, userFixture } from "./users-fixture";
+import { ContactAPIClient } from "../api/contact-api-client";
+import { APIContextFactory } from "../context/context-factory";
+import { ApiContext } from "../utils/constants/Contexts";
+import { AddContactBuilder } from "../utils/data/builder/add_contact-data-builder";
+import { Validator } from "../utils/schema/Validator";
+import { userFixture } from "./users-fixture";
+import { ApiAuth } from "../utils/types/api/endpoints/LogInUser";
+import { test as base } from "@playwright/test";
 
-export type AuthContactAPIClient = {
+
+type UserFixture = {
+  testUser: ApiAuth
+}
+type AuthContactAPIClient = {
   contactAPIClient: ContactAPIClient
   validation: Validator
   builder: AddContactBuilder

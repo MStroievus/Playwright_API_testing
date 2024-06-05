@@ -1,7 +1,7 @@
 import { APIResponse, expect } from "@playwright/test";
-import { AuthUser } from "../../utils/types/api/endpoints/logInUser";
+import { AuthUser } from "../utils/types/api/endpoints/LogInUser";
 import { BaseAPIClient } from "./base-api-client";
-import { APIRoutes } from "../../utils/constants/api-routes";
+import { APIRoutes } from "../utils/constants/api-routes";
 
 export class UsersAPIClient extends BaseAPIClient {
 

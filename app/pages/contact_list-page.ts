@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { AddContactPageModel } from "../../utils/model/add_contact_page-model";
+import { AddContactPageModel } from "../utils/model/add_contact_page-model";
 
 export class ContactList extends BasePage {
   public readonly pagePath: "/contactList";

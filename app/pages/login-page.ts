@@ -1,4 +1,4 @@
-import { PageUrl } from "../../utils/constants/pages";
+import { PageUrl } from "../utils/constants/pages";
 import { BasePage } from "./base-page";
 
 export class LoginPage extends BasePage {

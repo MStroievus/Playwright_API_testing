@@ -1,9 +1,9 @@
+import '../../app/utils/extensions/extensions-expect';
+import { test } from '../../app/fixture/auth_contact-api-client-fixture'
 import { expect } from '@playwright/test';
-import { AddContactEndpoint } from '../../utils/types/api/endpoints/addContact';
-import '../../utils/extensions/extensions-expect';
-import { AddContactRequestSchemas } from '../../utils/schema/requestAPI/add_contact_request-schema';
-import { AddContactResponseSchemas } from '../../utils/schema/responseAPI/add_contact_response-schema';
-import { test } from '../../app/fixture/auth_contact-api-client-fixture';
+import { AddContactRequestSchemas } from '../../app/utils/schema/requestAPI/add_contact_request-schema';
+import { AddContactResponseSchemas } from '../../app/utils/schema/responseAPI/add_contact_response-schema';
+import { AddContactEndpoint } from '../../app/utils/types/api/endpoints/addContact';
 
 test.describe('Add Contact endpoint with valid data', async () => {
   test(
@@ -42,7 +42,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@api', '@regression']
     },
     async ({ contactAPIClient, builder }) => {
-      const contact = builder.setLastName().build()
+      const contact = builder.setLastName().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
 
       expect(response).toHaveStatusCode(400);
@@ -56,7 +56,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@api', '@regression']
     },
     async ({ contactAPIClient, builder }) => {
-      const contact = builder.setFirstName().build()
+      const contact = builder.setFirstName().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
 
       expect(response).toHaveStatusCode(400);
@@ -70,7 +70,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@api', '@regression']
     },
     async ({ contactAPIClient, validation, builder }) => {
-      const contact = builder.setLastName().build()
+      const contact = builder.setLastName().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
       await validation.responseValidationSchema({
         schema: AddContactResponseSchemas.missingRequiredFieldErrorSchema('firstName'),
@@ -84,7 +84,7 @@ test.describe('Add Contact endpoint with valid data', async () => {
       tag: ['@api', '@regression']
     },
     async ({ contactAPIClient, validation, builder }) => {
-      const contact = builder.setFirstName().build()
+      const contact = builder.setFirstName().build() as AddContactEndpoint
       const response = await contactAPIClient.addContact(contact);
       await validation.responseValidationSchema({
         schema: AddContactResponseSchemas.missingRequiredFieldErrorSchema('lastName'),

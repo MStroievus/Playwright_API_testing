@@ -1,5 +1,5 @@
-import { PageUrl } from "../../utils/constants/pages";
-import { AddContactPageModel } from "../../utils/model/add_contact_page-model";
+import { PageUrl } from "../utils/constants/pages";
+import { AddContactPageModel } from "../utils/model/add_contact_page-model";
 import { BasePage } from "./base-page";
 
 export class AddContactPage extends BasePage {

@@ -1,8 +1,9 @@
-import { APIResponse } from '@playwright/test';
-import { APIRoutes } from '../../utils/constants/api-routes';
-import { BaseAPIClient } from './base-api-client';
-import { UpdateContactEndpoint } from '../../utils/types/api/endpoints/updateContact';
-import { AddContactEndpoint } from '../../utils/types/api/endpoints/addContact';
+import { APIResponse } from "@playwright/test";
+import { APIRoutes } from "../utils/constants/api-routes";
+import { UpdateContactEndpoint } from "../utils/types/api/endpoints/UpdateContact";
+import { BaseAPIClient } from "./base-api-client";
+import { AddContactEndpoint } from "../utils/types/api/endpoints/addContact";
+
 
 export class ContactAPIClient extends BaseAPIClient {
   async addContact(data: Partial<AddContactEndpoint>): Promise<APIResponse> {    //?  partial<T> https://www.typescriptlang.org/docs/handbook/utility-types.html 

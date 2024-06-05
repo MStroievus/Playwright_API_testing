@@ -1,8 +1,8 @@
 import { APIRequestContext } from "@playwright/test";
-import { ApiAuth } from "../../utils/types/api/endpoints/logInUser";
+import { ApiAuth } from "../utils/types/api/endpoints/LogInUser";
 import { BaseAPIContext } from "./base_api-context";
-import { ApiContext } from "../../utils/constants/contexts";
 import { AuthenticatedAPIContext } from "./authorized_api-context"
+import { ApiContext } from "../utils/constants/Contexts";
 
 export class APIContextFactory {
   static async contextFactory(selectedContext: string, data: ApiAuth = {}): Promise<APIRequestContext> {

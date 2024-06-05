@@ -1,5 +1,5 @@
-import { AddContactEndpoint } from "../../types/api/endpoints/addContact";
 import { faker } from "@faker-js/faker";
+import { AddContactEndpoint } from "../../types/api/endpoints/AddContact";
 
 
 export class AddContactBuilder {

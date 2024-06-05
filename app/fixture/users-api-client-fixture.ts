@@ -1,10 +1,11 @@
 import { test as base, mergeTests } from "@playwright/test";
-import { APIContextFactory } from "../context/context-factory";
-import { ApiContext } from "../../utils/constants/contexts";
-import { Validator } from "../../utils/schema/validator";
+import { Validator } from "../utils/schema/Validator";
 import { UsersAPIClient } from "../api/users-api-client";
+import { APIContextFactory } from "../context/context-factory";
+import { ApiContext } from "../utils/constants/Contexts";
 
-export type ContextFixture = {
+
+type ContextFixture = {
   usersAPIClient: UsersAPIClient
   validation: Validator
 }
@@ -22,11 +23,5 @@ export const usersAPIClient = base.extend<ContextFixture>({
 
 
 });
-
-
-
-
-
-
 
 export const test = mergeTests(usersAPIClient)

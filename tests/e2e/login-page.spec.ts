@@ -1,11 +1,13 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../app/pages/login-page';
-import { ContactList } from '../../app/pages/contact_list-page';
-import { csvReader } from '../../utils/helpers/csv-helper';
-import { PageUrl } from '../../utils/constants/pages';
+import test, { expect } from "@playwright/test";
+import { PageUrl } from "../../app/utils/constants/pages";
+import { LoginPage } from "../../app/pages/login-page";
+import { ContactList } from "../../app/pages/contact_list-page";
+import { csvReader } from "../../app/utils/helpers/csv-helper";
+
+
 
 test.describe('Login page', () => {
-  const invalidLoginData = csvReader('utils/data/csv-files/invalid-login-data.csv');
+  const invalidLoginData = csvReader('app/utils/data/csv-files/invalid-login-data.csv');
 
   test.beforeEach(async ({ page }) => {
     await page.goto(PageUrl.homePage);

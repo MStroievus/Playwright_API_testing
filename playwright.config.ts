@@ -13,6 +13,10 @@ export default defineConfig({
   },
   projects: [
     {
+      name: 'setup local storage',
+      testMatch: /local_storage\.setup\.ts/,
+    },
+    {
       name: 'api',
       grep: /@api/,
       use: {
@@ -23,10 +27,11 @@ export default defineConfig({
     {
       name: 'e2e',
       grep: /@e2e/,
+      dependencies: ['setup local storage'],
       use: {
         ...devices['Desktop Chrome'],
         trace: 'retain-on-first-failure',
-        baseURL: 'https://thinking-tester-contact-list.herokuapp.com'
+        baseURL: 'https://thinking-tester-contact-list.herokuapp.com',
       },
     },
   ],
