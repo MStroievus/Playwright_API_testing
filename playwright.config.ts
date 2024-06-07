@@ -12,10 +12,10 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   projects: [
-    {
-      name: 'setup local storage',
-      testMatch: /local_storage\.setup\.ts/,
-    },
+    // {
+    //   name: 'setup local storage',
+    //   testMatch: /local_storage\.setup\.ts/,
+    // },
     {
       name: 'api',
       grep: /@api/,
@@ -27,11 +27,10 @@ export default defineConfig({
     {
       name: 'e2e',
       grep: /@e2e/,
-      dependencies: ['setup local storage'],
+      //dependencies: ['setup local storage'],
       use: {
         ...devices['Desktop Chrome'],
         trace: 'retain-on-first-failure',
-        baseURL: 'https://thinking-tester-contact-list.herokuapp.com',
       },
     },
   ],

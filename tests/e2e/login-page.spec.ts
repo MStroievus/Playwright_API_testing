@@ -1,7 +1,7 @@
 import test, { expect } from "@playwright/test";
 import { PageUrl } from "../../app/utils/constants/pages";
 import { LoginPage } from "../../app/pages/login-page";
-import { ContactList } from "../../app/pages/contact_list-page";
+import { ContactListPage } from "../../app/pages/contact_list-page";
 import { csvReader } from "../../app/utils/helpers/csv-helper";
 
 
@@ -20,7 +20,7 @@ test.describe('Login page', () => {
     },
     async ({ page }) => {
       const loginPage = new LoginPage(page);
-      const contactList = new ContactList(page);
+      const contactList = new ContactListPage(page);
 
       await loginPage.fillForm(process.env.TEST_USER_EMAIL!, process.env.TEST_USER_PASSWORD!);
       await loginPage.getButtonByName('Submit').click();

@@ -1,7 +1,8 @@
 import { expect } from "@playwright/test";
-import { test } from "../../app/fixture/users-api-client-fixture";
+import { test } from "../../app/fixture/users_api_client-fixture";
 import { LogInUserRequestSchemas } from "../../app/utils/schema/requestAPI/log_in_users_request-schema";
 import { LogInUserResponseSchemas } from "../../app/utils/schema/responseAPI/log_in_user_response-schema";
+import '../../app/utils/extensions/extensions-expect';
 
 const userAuth = {
   email: process.env.TEST_USER_EMAIL!,
