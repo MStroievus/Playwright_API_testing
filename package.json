@@ -1,7 +1,7 @@
 {
   "name": "playwright_test_final_project",
   "version": "1.0.0",
-  "description": "[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)",
+  "description": "Test project craeted by MStroievus",
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
