@@ -11,6 +11,8 @@ export class EditContactPage extends BasePage {
 
 
   async clearForm() {
+    await this.page.reload()
+    await this.page.waitForTimeout(1000)
     await this.getInputByName('First Name').clear()
     await this.getInputByName('Last Name').clear()
     await this.getInputByName('Date of Birth:').clear()
@@ -25,8 +27,8 @@ export class EditContactPage extends BasePage {
   }
 
   async fillForm(data: AddContactPageModel) {
-    await this.getInputByName('First Name').pressSequentially(data.firstName, { delay: 500 })
-    await this.getInputByName('Last Name').pressSequentially(data.lastName, { delay: 500 })
+    await this.getInputByName('First Name').pressSequentially(data.firstName, {})
+    await this.getInputByName('Last Name').pressSequentially(data.lastName, {})
     await this.getInputByName('Date of Birth:').fill(data.birthdate)
     await this.getInputByName('Email:').fill(data.email)
     await this.getInputByName('Street Address 1:').fill(data.street1)

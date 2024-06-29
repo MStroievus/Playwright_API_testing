@@ -5,6 +5,7 @@ import { AddContactPage } from "../../app/pages/add_contact-page";
 import { TestDataGenerator } from "../../app/utils/model/add_contact_page-model";
 import { ContactDetailPage } from "../../app/pages/contact_detail-page";
 import { EditContactPage } from "../../app/pages/edit_contact-page"
+import { PageUrl } from "../../app/utils/constants/pages";
 
 
 test.describe('Edit contact contact', () => {
@@ -19,6 +20,7 @@ test.describe('Edit contact contact', () => {
     const updatedContactData = TestDataGenerator.createContactData();
 
     // Preconditions
+    await page.goto(PageUrl.homePage)
     await loginPage.fillForm(process.env.TEST_USER_EMAIL!, process.env.TEST_USER_PASSWORD!);
     await loginPage.getButtonByName('Submit').click();
     await expect(contactList.title).toHaveText('Contact List');

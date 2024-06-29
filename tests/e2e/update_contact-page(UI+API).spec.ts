@@ -47,6 +47,7 @@ test.describe('Edit contact contact', () => {
     contactAPIClient.addContact(data1 as AddContactPageModel)
     //Сервер записує контакт в базу біля 1 секунди, чекати на елемент, дом чи щось інше не допомвгає, контакт зявиться тільки  після близько 1 секунди
     await page.waitForTimeout(1000)
+    await page.reload()
     await contactListPage.clickOnCreatedContact(data1 as AddContactPageModel)
     await contactDetailPage.getButtonByName('Edit Contact').click()
     await page.waitForTimeout(1000)

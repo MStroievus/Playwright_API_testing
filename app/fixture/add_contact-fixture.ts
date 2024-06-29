@@ -20,6 +20,7 @@ export const addContactFixture = base.extend<AddContactFixture & Pages>({
     await loginPage.getButtonByName('Submit').click();
 
     await use(page);
+    await page.close()
   },
 
   builder: async ({ }, use) => {

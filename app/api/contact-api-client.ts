@@ -9,7 +9,6 @@ export class ContactAPIClient extends BaseAPIClient {
   async addContact(data: Partial<AddContactEndpoint>): Promise<APIResponse> {
     return await test.step(`Add a new contact with data: ${JSON.stringify(data)}`, async () => {
       const response = await this.context.post(APIRoutes.Contact, { data });
-      console.log(await response.json());
       const id = await this.getIDFromResponse(response);
       this.addID(id);
       return response;
