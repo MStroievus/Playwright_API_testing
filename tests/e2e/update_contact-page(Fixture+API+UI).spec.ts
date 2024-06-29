@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { test } from '../../app/fixture/add_contact-fixture'
 import { AddContactPageModel } from '../../app/utils/model/add_contact_page-model';
 

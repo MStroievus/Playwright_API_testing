@@ -4,7 +4,6 @@ import { PageUrl } from "../utils/constants/pages";
 import { Pages, pages } from "./pages-fixture";
 import { AuthContactAPIClientFixture } from "./auth_contact_api_client-fixture";
 import { AddContactBuilder } from "../utils/data/builder/add_contact-data-builder";
-import { ApiAuth } from "../utils/types/api/endpoints/LogInUser";
 import { userFixture } from "./users-fixture";
 
 type AddContactFixture = {
@@ -23,6 +22,7 @@ export const addContactFixture = base.extend<AddContactFixture & Pages>({
     await page.close()
   },
 
+  // eslint-disable-next-line no-empty-pattern
   builder: async ({ }, use) => {
     const builder = new AddContactBuilder()
     await use(builder)

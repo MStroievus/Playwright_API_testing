@@ -1,7 +1,8 @@
+/* eslint-disable no-empty-pattern */
 import { mergeTests } from "@playwright/test";
 import { ContactAPIClient } from "../api/contact-api-client";
 import { APIContextFactory } from "../context/context-factory";
-import { ApiContext } from "../utils/constants/Contexts";
+import { ApiContext } from "../utils/constants/contexts";
 import { AddContactBuilder } from "../utils/data/builder/add_contact-data-builder";
 import { Validator } from "../utils/schema/Validator";
 import { userFixture } from "./users-fixture";

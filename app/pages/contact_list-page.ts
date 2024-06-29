@@ -19,7 +19,7 @@ export class ContactListPage extends BasePage {
     const properties = Object.values(data)
     const nameFields = await this.page.locator(`[class="contactTableBodyRow"] td:nth-child(2)`).all();
 
-    for (let nameField of nameFields) {
+    for (const nameField of nameFields) {
       const text = await nameField.innerText();
       if (properties.some(value => text.includes(value.toString()))) {
         return true;

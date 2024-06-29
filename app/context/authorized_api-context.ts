@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { APIRequestContext, request } from '@playwright/test';
 import { ApiAuth, AuthUser } from '../utils/types/api/endpoints/LogInUser';
 import { BaseAPIContext } from './base_api-context';

@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import { PageUrl } from './app/utils/constants/pages';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
 export default defineConfig({

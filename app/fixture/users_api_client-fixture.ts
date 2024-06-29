@@ -1,8 +1,9 @@
+/* eslint-disable no-empty-pattern */
 import { test as base, mergeTests } from "@playwright/test";
 import { Validator } from "../utils/schema/Validator";
 import { UsersAPIClient } from "../api/users-api-client";
 import { APIContextFactory } from "../context/context-factory";
-import { ApiContext } from "../utils/constants/Contexts";
+import { ApiContext } from "../utils/constants/contexts";
 
 
 type ContextFixture = {

@@ -1,17 +1,14 @@
 import { expect, test as setup } from '@playwright/test';
-import { AuthUser } from '../../app/utils/types/api/endpoints/LogInUser';
-import { APIContextFactory } from '../../app/context/context-factory';
-import { ApiContext } from '../../app/utils/constants/Contexts';
-import { UsersAPIClient } from '../../app/api/users-api-client';
+//import { AuthUser } from '../../app/utils/types/api/endpoints/LogInUser';
 import { PageUrl } from '../../app/utils/constants/pages';
 import { LoginPage } from '../../app/pages/login-page';
 import { ContactListPage } from '../../app/pages/contact_list-page';
 
-const data: AuthUser = {
-  email: process.env.TEST_USER_EMAIL!,
-  password: process.env.TEST_USER_PASSWORD!
+// const data: AuthUser = {
+//   email: process.env.TEST_USER_EMAIL!,
+//   password: process.env.TEST_USER_PASSWORD!
 
-}
+// }
 
 const authFile = '.auth/user.json';
 

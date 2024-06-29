@@ -2,7 +2,7 @@ import { APIRequestContext } from "@playwright/test";
 import { ApiAuth } from "../utils/types/api/endpoints/LogInUser";
 import { BaseAPIContext } from "./base_api-context";
 import { AuthenticatedAPIContext } from "./authorized_api-context";
-import { ApiContext } from "../utils/constants/Contexts";
+import { ApiContext } from "../utils/constants/contexts";
 import { test } from '@playwright/test';
 
 /**

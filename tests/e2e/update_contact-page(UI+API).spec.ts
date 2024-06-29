@@ -1,12 +1,12 @@
 import test, { expect } from "@playwright/test";
 import { LoginPage } from "../../app/pages/login-page";
 import { ContactListPage } from "../../app/pages/contact_list-page";
-import { AddContactPageModel, TestDataGenerator } from "../../app/utils/model/add_contact_page-model";
+import { AddContactPageModel } from "../../app/utils/model/add_contact_page-model";
 import { ContactDetailPage } from "../../app/pages/contact_detail-page";
 import { EditContactPage } from "../../app/pages/edit_contact-page";
 import { APIContextFactory } from "../../app/context/context-factory";
 import { ContactAPIClient } from "../../app/api/contact-api-client";
-import { ApiContext } from "../../app/utils/constants/Contexts";
+import { ApiContext } from "../../app/utils/constants/contexts";
 import { ApiAuth } from "../../app/utils/types/api/endpoints/LogInUser";
 import { AddContactBuilder } from "../../app/utils/data/builder/add_contact-data-builder";
 import { PageUrl } from "../../app/utils/constants/pages";

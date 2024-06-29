@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 import { test as base } from "@playwright/test";
 import { ApiAuth, AuthUser } from "../utils/types/api/endpoints/LogInUser";
 
