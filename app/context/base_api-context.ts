@@ -1,5 +1,12 @@
 import { APIRequestContext, request } from "@playwright/test";
 
+
+// This BaseAPIContext class provides a foundation for creating API contexts.
+// It handles base URL and HTTP headers setup, and includes a method to create
+// a new APIRequestContext with configured settings and error handling.
+
+
+
 export class BaseAPIContext {
   protected baseURL: string;
   protected extraHTTPHeaders: { [key: string]: string };
@@ -17,9 +24,14 @@ export class BaseAPIContext {
   }
 
   async createContext(): Promise<APIRequestContext> {
-    return await request.newContext({
-      baseURL: this.baseURL,
-      extraHTTPHeaders: this.extraHTTPHeaders
-    });
+    try {
+      return await request.newContext({
+        baseURL: this.baseURL,
+        extraHTTPHeaders: this.extraHTTPHeaders
+      });
+    } catch (error) {
+      console.error('Failed to create API context:', error);
+      throw error;
+    }
   }
 }

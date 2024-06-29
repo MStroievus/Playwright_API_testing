@@ -4,11 +4,7 @@ import { BasePage } from "./base-page";
 
 export class AddContactPage extends BasePage {
   public readonly pagePath: PageUrl.addContactPage;
-  public readonly submitButton = this.page.getByRole('button', { name: "Submit" })
-
-  getPlaceholderByName(placeholderName: string) {
-    return this.page.getByPlaceholder(placeholderName);
-  }
+  public readonly submitButton = this.page.getByRole('button', { name: "Submit" }) // інший спосіб локатора
 
 
   async fillForm(data: AddContactPageModel) {
@@ -23,19 +19,5 @@ export class AddContactPage extends BasePage {
     await this.getPlaceholderByName('State or Province').fill(data.stateProvince)
     await this.getPlaceholderByName('Postal Code').fill(data.postalCode.toString())
     await this.getPlaceholderByName('Country').fill(data.country)
-  }
-
-  async clearForm() {
-    await this.getPlaceholderByName('First Name').clear()
-    await this.getPlaceholderByName('Last Name').clear()
-    await this.getPlaceholderByName('yyyy-MM-dd').clear()
-    await this.getPlaceholderByName('example@email.com').clear()
-    await this.getPlaceholderByName('8005551234').clear()
-    await this.getPlaceholderByName('Address 1').clear()
-    await this.getPlaceholderByName('Address 2').clear()
-    await this.getPlaceholderByName('City').clear()
-    await this.getPlaceholderByName('State or Province').clear()
-    await this.getPlaceholderByName('Postal Code').clear()
-    await this.getPlaceholderByName('Country').clear()
   }
 }

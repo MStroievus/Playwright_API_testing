@@ -18,7 +18,7 @@ type AuthContactAPIClient = {
   builder: AddContactBuilder
 }
 
-export const contextContactAPIFixture = base.extend<AuthContactAPIClient, UserFixture>({
+export const AuthContactAPIClientFixture = base.extend<AuthContactAPIClient, UserFixture>({
   contactAPIClient: async ({ testUser }, use) => {
     const authenticatedContext = await APIContextFactory.contextFactory(ApiContext.AuthAPIContext, testUser);
     const contactAPIClient = new ContactAPIClient(authenticatedContext);
@@ -44,4 +44,4 @@ export const contextContactAPIFixture = base.extend<AuthContactAPIClient, UserFi
 
 
 
-export const test = mergeTests(userFixture, contextContactAPIFixture)
+export const test = mergeTests(userFixture, AuthContactAPIClientFixture)

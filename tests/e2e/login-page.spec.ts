@@ -4,8 +4,6 @@ import { LoginPage } from "../../app/pages/login-page";
 import { ContactListPage } from "../../app/pages/contact_list-page";
 import { csvReader } from "../../app/utils/helpers/csv-helper";
 
-
-
 test.describe('Login page', () => {
   const invalidLoginData = csvReader('app/utils/data/csv-files/invalid-login-data.csv');
 
@@ -19,12 +17,14 @@ test.describe('Login page', () => {
       tag: ['@e2e', '@regression', '@smoke']
     },
     async ({ page }) => {
-      const loginPage = new LoginPage(page);
-      const contactList = new ContactListPage(page);
+      await test.step('Log in with valid data', async () => {
+        const loginPage = new LoginPage(page);
+        const contactList = new ContactListPage(page);
 
-      await loginPage.fillForm(process.env.TEST_USER_EMAIL!, process.env.TEST_USER_PASSWORD!);
-      await loginPage.getButtonByName('Submit').click();
-      await expect(contactList.title).toHaveText('Contact List');
+        await loginPage.fillForm(process.env.TEST_USER_EMAIL!, process.env.TEST_USER_PASSWORD!);
+        await loginPage.getButtonByName('Submit').click();
+        await expect(contactList.title).toHaveText('Contact List');
+      });
     }
   );
 
@@ -35,12 +35,14 @@ test.describe('Login page', () => {
         tag: ['@e2e', '@regression']
       },
       async ({ page }) => {
-        const loginPage = new LoginPage(page);
+        await test.step(`Log in with invalid data: ${record.testID}`, async () => {
+          const loginPage = new LoginPage(page);
 
-        await loginPage.fillForm(record.email, record.password);
-        await loginPage.getButtonByName('Submit').click();
-        await expect(loginPage.errorMessage).toBeVisible()
-        await expect(loginPage.errorMessage).toHaveText('Incorrect username or password')
+          await loginPage.fillForm(record.email, record.password);
+          await loginPage.getButtonByName('Submit').click();
+          await expect(loginPage.errorMessage).toBeVisible();
+          await expect(loginPage.errorMessage).toHaveText('Incorrect username or password');
+        });
       }
     );
   }

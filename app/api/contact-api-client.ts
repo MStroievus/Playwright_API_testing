@@ -8,6 +8,7 @@ import { AddContactEndpoint } from "../utils/types/api/endpoints/addContact";
 export class ContactAPIClient extends BaseAPIClient {
   async addContact(data: Partial<AddContactEndpoint>): Promise<APIResponse> {    //?  partial<T> https://www.typescriptlang.org/docs/handbook/utility-types.html 
     const response = await this.context.post(APIRoutes.Contact, { data });
+    console.log(await response.json())
     const id = await this.getIDFromResponse(response);
     this.addID(id);
     return response;

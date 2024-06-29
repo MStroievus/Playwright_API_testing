@@ -18,47 +18,47 @@ export class AddContactBuilder {
   }
 
   setBirthdate() {
-    this.addContact.birthdate = faker.date.past().toISOString().split('T')[0];
+    this.addContact.birthdate = faker.date.past().toISOString().split('T')[0]!;
     return this;
   }
 
   setPhone() {
-    this.addContact.phone = faker.number.int({ min: 1000000, max: 9999999 })
+    this.addContact.phone = faker.number.int({ min: 1000000, max: 9999999 })!
     return this;
   }
 
   setEmail() {
-    this.addContact.email = faker.internet.email();
+    this.addContact.email = faker.internet.email().toLowerCase()!;
     return this;
   }
 
   setStreet1() {
-    this.addContact.street1 = faker.location.streetAddress();
+    this.addContact.street1 = faker.location.streetAddress()!;
     return this;
   }
 
   setStreet2() {
-    this.addContact.street2 = faker.location.secondaryAddress();;
+    this.addContact.street2 = faker.location.secondaryAddress()!;
     return this;
   }
 
   setCity() {
-    this.addContact.city = faker.location.city();
+    this.addContact.city = faker.location.city()!;
     return this;
   }
 
   setStateProvince() {
-    this.addContact.stateProvince = faker.location.state()
+    this.addContact.stateProvince = faker.location.state()!
     return this;
   }
 
   setPostalCode() {
-    this.addContact.postalCode = faker.number.int({ min: 10000, max: 99999 })
+    this.addContact.postalCode = faker.number.int({ min: 10000, max: 99999 })!
     return this;
   }
 
   setCountry() {
-    this.addContact.country = faker.location.county();
+    this.addContact.country = faker.location.county()!;
     return this;
   }
 

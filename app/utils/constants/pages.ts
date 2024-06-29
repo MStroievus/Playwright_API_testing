@@ -1,5 +1,7 @@
 export enum PageUrl {
   homePage = 'https://thinking-tester-contact-list.herokuapp.com',
-  contactList = '/ContactList',
-  addContactPage = '/addContact'
+  contactListPage = '/ContactList',
+  addContactPage = '/addContact',
+  contactDetailPage = '/contactDetails',
+  editContactPage = '/editContact'
 }

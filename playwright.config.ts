@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { PageUrl } from './app/utils/constants/pages';
 require('dotenv').config();
 
 export default defineConfig({
@@ -6,16 +7,19 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 1,
-  workers: process.env.CI ? 1 : 3,
+  workers: process.env.CI ? 1 : 2,
   reporter: 'html',
   use: {
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
   projects: [
-    // {
-    //   name: 'setup local storage',
-    //   testMatch: /local_storage\.setup\.ts/,
-    // },
+    {
+      name: 'setup local storage',
+      testMatch: /local_storage\.setup\.ts/,
+      use: {
+        baseURL: PageUrl.homePage
+      }
+    },
     {
       name: 'api',
       grep: /@api/,
@@ -27,10 +31,12 @@ export default defineConfig({
     {
       name: 'e2e',
       grep: /@e2e/,
-      //dependencies: ['setup local storage'],
+      dependencies: ['setup local storage'],
       use: {
         ...devices['Desktop Chrome'],
         trace: 'retain-on-first-failure',
+        headless: true,
+        baseURL: PageUrl.homePage
       },
     },
   ],
