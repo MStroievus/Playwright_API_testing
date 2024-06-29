@@ -33,7 +33,7 @@ test.describe('Edit contact contact', () => {
 
   })
 
-  test.only('Edit contact with API', { tag: ['@e2e', '@regression', '@smoke'] }, async ({ page }) => {
+  test('Edit contact with API', { tag: ['@e2e', '@regression', '@smoke'] }, async ({ page }) => {
     const authenticatedContext = await APIContextFactory.contextFactory(ApiContext.AuthAPIContext, testUser);
     const contactAPIClient = new ContactAPIClient(authenticatedContext);
     const contactDetailPage = new ContactDetailPage(page)

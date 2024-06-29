@@ -39,5 +39,15 @@ export default defineConfig({
         baseURL: PageUrl.homePage
       },
     },
+    {
+      name: 'e2eFixture',
+      grep: /@fixture/,
+      use: {
+        ...devices['Desktop Chrome'],
+        trace: 'retain-on-first-failure',
+        headless: true,
+        baseURL: PageUrl.homePage
+      },
+    },
   ],
 });

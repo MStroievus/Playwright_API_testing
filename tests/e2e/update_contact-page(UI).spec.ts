@@ -5,7 +5,6 @@ import { AddContactPage } from "../../app/pages/add_contact-page";
 import { TestDataGenerator } from "../../app/utils/model/add_contact_page-model";
 import { ContactDetailPage } from "../../app/pages/contact_detail-page";
 import { EditContactPage } from "../../app/pages/edit_contact-page"
-import { PageUrl } from "../../app/utils/constants/pages";
 
 
 test.describe('Edit contact contact', () => {

@@ -12,6 +12,7 @@ import { test as base } from "@playwright/test";
 type UserFixture = {
   testUser: ApiAuth
 }
+
 type AuthContactAPIClient = {
   contactAPIClient: ContactAPIClient
   validation: Validator

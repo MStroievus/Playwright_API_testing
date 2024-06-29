@@ -5,7 +5,7 @@ export type BasePage = {
   baseContext: BrowserContext;
 };
 
-export const baseTest = base.extend<BasePage>({
+export const basePageFixture = base.extend<BasePage>({
   baseContext: async ({ browser }, use) => {
     const context = await browser.newContext();
     await use(context);
