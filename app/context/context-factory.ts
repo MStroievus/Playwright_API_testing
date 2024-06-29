@@ -1,27 +1,21 @@
-import { APIRequestContext, Browser, BrowserContext } from "@playwright/test";
-import { ApiAuth, AuthUser } from "../utils/types/api/endpoints/LogInUser";
+import { APIRequestContext } from "@playwright/test";
+import { ApiAuth } from "../utils/types/api/endpoints/LogInUser";
 import { BaseAPIContext } from "./base_api-context";
 import { AuthenticatedAPIContext } from "./authorized_api-context";
 import { ApiContext } from "../utils/constants/Contexts";
-
-//?This APIContextFactory class creates different types of API contexts based on the provided context type, supporting both authenticated and base API contexts.
-
-//! https://refactoring.guru/ru/design-patterns/factory-method
+import { test } from '@playwright/test';
 
 /**
- * Цей файл визначає клас APIContextFactory, який генерує контексти запитів до API
- * на основі вибраного типу контексту. Клас використовує змінні оточення для визначення
- * базової URL-адреси для запитів API. Метод contextFactory визначає тип
- * контекст API для створення (автентифікований або базовий або  будь якого іншого який ви стоврите в майбутньому), використовуючи надані дані. Метод 
- * createContext ініціалізує та повертає відповідний контекст запиту API.
+ * Цей APIContextFactory клас створює різні типи контекстів API на основі вказаного типу контексту,
+ * підтримуючи як аутентифіковані, так і базові контексти API.
  */
 
 export class APIContextFactory {
   /**
-   * Creates an API request context based on the selected context type.
-   * @param selectedContext - The type of context to create
-   * @param data - The authentication data required for creating an authenticated context.
-   * @returns A Promise that resolves to an APIRequestContext.
+   * Створює контекст запиту API на основі вибраного типу контексту.
+   * @param selectedContext - Тип контексту для створення
+   * @param data - Дані аутентифікації, необхідні для створення аутентифікованого контексту.
+   * @returns Об'єкт Promise, що вирішується до APIRequestContext.
    */
   static async contextFactory(selectedContext: string, data: ApiAuth = {}): Promise<APIRequestContext> {
     const baseURL = process.env.BASE_URL;
@@ -29,15 +23,23 @@ export class APIContextFactory {
       throw new Error('BASE_URL environment variable is not set');
     }
 
-    switch (selectedContext) {
-      case ApiContext.AuthAPIContext:
-        return await this.createContext(new AuthenticatedAPIContext(baseURL, data));
-      case ApiContext.BaseAPIContext:
-        return await this.createContext(new BaseAPIContext(baseURL));
-      default:
-        throw new Error('Provide context');
-    }
+    return await test.step(`Create API context of type: ${selectedContext}`, async () => {
+      switch (selectedContext) {
+        case ApiContext.AuthAPIContext:
+          return await this.createContext(new AuthenticatedAPIContext(baseURL, data));
+        case ApiContext.BaseAPIContext:
+          return await this.createContext(new BaseAPIContext(baseURL));
+        default:
+          throw new Error('Provide valid context type');
+      }
+    });
   }
+
+  /**
+   * Цей приватний метод ініціалізує та повертає контекст запиту API згідно з переданим об'єктом BaseAPIContext.
+   * @param context - Екземпляр класу BaseAPIContext для створення контексту.
+   * @returns Об'єкт Promise, що вирішується до APIRequestContext.
+   */
   private static async createContext(context: BaseAPIContext): Promise<APIRequestContext> {
     return await context.createContext();
   }
