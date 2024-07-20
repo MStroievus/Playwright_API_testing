@@ -10,7 +10,15 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 2,
   workers: process.env.CI ? 2 : 2,
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    [
+      '@testomatio/reporter/lib/adapter/playwright.js',
+      {
+        apiKey: process.env.TESTOMATIO,
+      },
+    ],
+  ],
   use: {
     trace: 'retain-on-failure',
   },
