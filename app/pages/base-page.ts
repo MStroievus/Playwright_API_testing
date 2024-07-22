@@ -11,6 +11,10 @@ export abstract class BasePage implements IPage {
     await this.page.goto(url);
   }
 
+  get api() {
+    return this.page
+  }
+
   getPlaceholderByName(placeholderName: string) {
     return this.page.getByPlaceholder(placeholderName);
   }

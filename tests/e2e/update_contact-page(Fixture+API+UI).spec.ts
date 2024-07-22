@@ -5,13 +5,14 @@ import { AddContactPageModel } from '../../app/utils/model/add_contact_page-mode
 
 test.describe('Edit contact contact', () => {
   test('Edit contact with fixture and API', { tag: ['@fixture', '@regression', '@smoke'] }, async (
-    { withLogin, contactAPIClient, builder, contactListPage, contactDetailPage, editContactPage, page }) => {
+    { withLogin, contactAPIClient, builder, contactListPage, contactDetailPage, editContactPage }) => {
     const data1 = builder.fullObject().build()
     const data2 = builder.fullObject().build()
     await contactAPIClient.addContact(data1)
-    await page.reload()
-    await page.waitForTimeout(1000)
-    await contactListPage.clickOnCreatedContact(data1 as AddContactPageModel)
+    await contactListPage.api.reload()
+    await contactListPage.api.waitForTimeout(1000)
+
+    await contactListPage.clickOnCreatedContact(data1 as AddContactPageModel) //TODO зробити без переведення 
     await contactDetailPage.getButtonByName('Edit Contact').click()
     await editContactPage.clearForm()
     await editContactPage.fillForm(data2 as AddContactPageModel)
@@ -22,11 +23,32 @@ test.describe('Edit contact contact', () => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // test.use({ userToLogin: 'admin' });
 // Ця фікстура сетить сторедж, який не працює тут  тому для прикладу лише це просто тут
 // test('Edit contact with fixture and API', { tag: ['@fixture', '@regression', '@smoke'] }, async ({ storageState, page }) => {
 //   await page.goto(PageUrl.homePage)
 //  })
-
-
-

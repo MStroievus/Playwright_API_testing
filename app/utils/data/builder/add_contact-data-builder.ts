@@ -7,6 +7,7 @@ export class AddContactBuilder {
 
   };
 
+  // generate - змінити назву і переробити  логіку
   setFirstName() {
     this.addContact.firstName = faker.person.firstName();
     return this;
@@ -62,6 +63,8 @@ export class AddContactBuilder {
     return this;
   }
 
+
+  // забрати
   fullObject() {
     return this
       .setFirstName()
